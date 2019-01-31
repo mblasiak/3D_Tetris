@@ -11,7 +11,7 @@ class Box:
         self.box.reparentTo(app.render)
         self.gfx_x = 0
         self.gfx_y = 0
-        self.gfx_z = 10
+        self.gfx_z = 170
         self.box.setPos(self.gfx_x, self.gfx_z, self.gfx_y)
 
         self.game_map.block_field(self.y, self.x)
@@ -26,13 +26,11 @@ class Box:
             self.game_map.release_field(self.y, self.x)
             self.y = self.y - 1
             self.game_map.block_field(self.y, self.x)
-            print(self.gfx_y)
 
             self.move_down_itv.start()
             self.gfx_y = self.gfx_y - 2
             return 1
         else:
-            print("End")
             return 0
 
     def is_animation_finished(self):
@@ -40,8 +38,15 @@ class Box:
 
     def move_left(self):
         if self.game_map.check_field(self.y, self.x - 1):
+            self.game_map.release_field(self.y, self.x)
             self.x = self.x - 1
+            self.game_map.block_field(self.y, self.x)
+            self.gfx_x=self.gfx_x-2
+
 
     def move_right(self):
         if self.game_map.check_field(self.y, self.x + 1):
+            self.game_map.release_field(self.y, self.x)
             self.x = self.x + 1
+            self.game_map.block_field(self.y, self.x)
+            self.gfx_x = self.gfx_x + 2
