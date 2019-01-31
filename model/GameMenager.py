@@ -6,7 +6,9 @@ from .Box import Box
 class GameMenager:
 
     def __init__(self, app):
-        game_space = np.zeros((20, 15)).tolist()
+        self.SIZE_X=5
+        self.SIZE_Y=20
+        game_space = np.zeros((self.SIZE_Y, self.SIZE_X)).tolist()
         self.mc = MapController(game_space)
         self.app = app
         self.game_speed = 0.1
@@ -14,8 +16,10 @@ class GameMenager:
         self.current_box = None
 
     def drop_new(self):
-        if self.mc.check_field(19, 5):
-            box = Box(self, 5, 19, self.app, self.mc)
+        top=self.SIZE_Y-1
+        midlle=round(self.SIZE_X/2)
+        if self.mc.check_field(top,midlle):
+            box = Box(self, midlle, top, self.app, self.mc)
             self.current_box = box
             return True
         return False
