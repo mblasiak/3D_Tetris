@@ -19,6 +19,8 @@ class Box:
                                                   Point3(self.gfx_x, self.gfx_z, self.gfx_y - 2))
 
     def fall(self):
+
+        self.box.setPos(self.gfx_x, self.gfx_z, self.gfx_y)
         if self.game_map.check_field(self.y - 1, self.x):
             self.move_down_itv = self.box.posInterval(self.game_map.game_speed,
                                                       Point3(self.gfx_x, self.gfx_z, self.gfx_y - 2),
@@ -43,10 +45,10 @@ class Box:
             self.game_map.block_field(self.y, self.x)
             self.gfx_x=self.gfx_x-2
 
-
     def move_right(self):
         if self.game_map.check_field(self.y, self.x + 1):
             self.game_map.release_field(self.y, self.x)
             self.x = self.x + 1
             self.game_map.block_field(self.y, self.x)
             self.gfx_x = self.gfx_x + 2
+

@@ -33,6 +33,7 @@ class GameMenager:
             self.current_box=box
 
     def moveBlocks(self, task):
+        print("kupa")
         self.app.accept("arrow_left",self.current_box.move_left)
         self.app.accept("arrow_right", self.current_box.move_right)
         if not self.current_box.is_animation_finished():
