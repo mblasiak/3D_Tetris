@@ -17,6 +17,7 @@ class MapController:
         self.blocks_map[y][x] = 0
 
     def remove_full_row(self):
+
         for y in self.blocks_map:
             filled_count = 0
             for x in y:
@@ -26,3 +27,8 @@ class MapController:
                 for x in range(len(y)):
                     y[x].remove()
                     y[x] = 0
+
+        for y in self.blocks_map:
+            for x in y:
+                if x != 0:
+                    x.fall()
