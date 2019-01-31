@@ -3,7 +3,7 @@ from model.MapController import MapController
 from .Box import Box
 
 
-class GameMenager:
+class GameManager:
 
     def __init__(self, app):
         self.SIZE_X=5
