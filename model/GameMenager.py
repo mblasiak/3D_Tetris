@@ -27,16 +27,19 @@ class GameMenager:
         self.block_map[y][x] = 0
 
     def drop_new(self):
-        if self.check_field(19, 9):
+        if self.check_field(19, 5):
             box = Box(self, 5, 19, self.app)
             self.all_boxes.append(box)
             self.current_box=box
+            return True
+        return False
 
     def moveBlocks(self, task):
-        print("kupa")
         self.app.accept("arrow_left",self.current_box.move_left)
         self.app.accept("arrow_right", self.current_box.move_right)
         if not self.current_box.is_animation_finished():
             if not self.current_box.fall():
-                self.drop_new()
+                still_playing=self.drop_new()
+                if not still_playing:
+                    return task.done
         return task.cont
