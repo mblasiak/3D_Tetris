@@ -7,7 +7,7 @@ class Box:
         self.game_manager = game_manager
         self.x = x
         self.y = y
-        self.gfx_x = 0
+        self.gfx_x = x * game_manager.box_size
         self.gfx_y = 0
         self.gfx_z = 170
 
@@ -22,9 +22,15 @@ class Box:
         self.m_c = map_controller
         self.m_c.block_field(self.y, self.x, self)
 
+    def can_fall(self):
+        return self.m_c.check_field(self.y - 1, self.x)
+
+    def update_box(self):
+        self.box_model.setPos(self.gfx_x, self.gfx_z, self.gfx_y)
+
     def fall(self):
         self.box_model.setPos(self.gfx_x, self.gfx_z, self.gfx_y)
-        if self.m_c.check_field(self.y - 1, self.x):
+        if self.m_c.check_field(self.y - 1, self.x) == True:
             self.move_down_itv = self.box_model.posInterval(self.game_manager.game_speed,
                                                             Point3(self.gfx_x, self.gfx_z, self.gfx_y - self.box_size),
                                                             startPos=Point3(self.gfx_x, self.gfx_z, self.gfx_y))
@@ -41,12 +47,15 @@ class Box:
     def is_animation_playing(self):
         return self.move_down_itv.isPlaying()
 
+    def can_move_horizontal(self, direction):
+        return self.m_c.check_field(self.y, self.x + direction)
+
     def move_horizontal(self, direction):
-        if self.m_c.check_field(self.y, self.x + direction):
+        if self.m_c.check_field(self.y,self.x)==self:
             self.m_c.release_field(self.y, self.x)
-            self.x = self.x + direction
-            self.m_c.block_field(self.y, self.x, self)
-            self.gfx_x = self.gfx_x + direction * self.box_size
+        self.x = self.x + direction
+        self.m_c.block_field(self.y, self.x, self)
+        self.gfx_x = self.gfx_x + direction * self.box_size
 
     def move_left(self):
         self.move_horizontal(-1)

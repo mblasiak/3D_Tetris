@@ -1,13 +1,14 @@
 import numpy as np
 from model.MapController import MapController
 from .Box import Box
+from .Blocks import BlockBox
 
 
 class GameManager:
 
     def __init__(self, app):
-        self.SIZE_X=5
-        self.SIZE_Y=20
+        self.SIZE_X = 6
+        self.SIZE_Y = 20
         game_space = np.zeros((self.SIZE_Y, self.SIZE_X)).tolist()
         self.mc = MapController(game_space)
         self.app = app
@@ -16,10 +17,10 @@ class GameManager:
         self.current_box = None
 
     def drop_new(self):
-        top=self.SIZE_Y-1
-        midlle=round(self.SIZE_X/2)
-        if self.mc.check_field(top,midlle):
-            box = Box(self, midlle, top, self.app, self.mc)
+        top = self.SIZE_Y - 1
+        midlle = round(self.SIZE_X / 2)
+        if self.mc.check_field(top, midlle):
+            box = BlockBox(self, self.app, self.mc, midlle, top)
             self.current_box = box
             return True
         return False

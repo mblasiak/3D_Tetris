@@ -8,7 +8,7 @@ class MapController:
         if self.blocks_map[y][x] == 0:
             return True
         else:
-            return False
+            return self.blocks_map[y][x]
 
     def block_field(self, y, x, box):
         self.blocks_map[y][x] = box
@@ -18,17 +18,18 @@ class MapController:
 
     def remove_full_row(self):
 
-        for y in self.blocks_map:
+        for y in range(len(self.blocks_map)):
             filled_count = 0
-            for x in y:
+            for x in self.blocks_map[y]:
                 if x != 0:
                     filled_count += 1
-            if filled_count == len(y):
-                for x in range(len(y)):
-                    y[x].remove()
-                    y[x] = 0
+            if filled_count == len(self.blocks_map[y]):
 
-        for y in self.blocks_map:
-            for x in y:
-                if x != 0:
-                    x.fall()
+                for x in range(len(self.blocks_map[y])):
+                    self.blocks_map[y][x].remove()
+                    self.blocks_map[y][x] = 0
+
+                for p in range(y, len(self.blocks_map)):
+                    for j in self.blocks_map[p]:
+                        if j != 0:
+                            j.fall()
