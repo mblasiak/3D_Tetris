@@ -31,7 +31,6 @@ class MapController:
 
         if len(drop_list)>0:
             lowest=min(drop_list)
-            print(lowest)
             for time in range(len(drop_list)):
                 for p in range(lowest, len(self.blocks_map)):
                     for j in self.blocks_map[p]:

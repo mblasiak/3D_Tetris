@@ -8,12 +8,12 @@ class GameManager:
 
     def __init__(self, app):
         self.SIZE_X = 4
-        self.SIZE_Y = 20
+        self.SIZE_Y = 40
         self.box_model = app.loader.loadModel("resources/PS2.egg")
         game_space = np.zeros((self.SIZE_Y, self.SIZE_X)).tolist()
         self.mc = MapController(game_space)
         self.app = app
-        self.game_speed = 0.1
+        self.game_speed = 0.001
         self.box_size = 2
         self.current_box = None
 
@@ -37,6 +37,7 @@ class GameManager:
             if not self.current_box.fall():
                 self.mc.remove_full_row()
                 still_playing = self.drop_new()
+               #self.app.render.analyze()
                 if not still_playing:
                     return task.done
         return task.cont
