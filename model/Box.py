@@ -13,8 +13,9 @@ class Box:
 
         # 3d set up
         self.box_size = game_manager.box_size
-        self.box_model = app.loader.loadModel("resources/PS2.egg")
-        self.box_model.reparentTo(app.render)
+
+        self.box_model = app.render.attachNewNode("Box Holder")
+        game_manager.box_model.instanceTo(self.box_model)
         self.box_model.setPos(self.gfx_x, self.gfx_z, self.gfx_y)
         self.move_down_itv = self.box_model.posInterval(self.game_manager.game_speed,
                                                         Point3(self.gfx_x, self.gfx_z, self.gfx_y - self.box_size))

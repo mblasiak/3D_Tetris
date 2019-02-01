@@ -9,6 +9,7 @@ class GameManager:
     def __init__(self, app):
         self.SIZE_X = 4
         self.SIZE_Y = 20
+        self.box_model = app.loader.loadModel("resources/PS2.egg")
         game_space = np.zeros((self.SIZE_Y, self.SIZE_X)).tolist()
         self.mc = MapController(game_space)
         self.app = app
