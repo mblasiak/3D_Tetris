@@ -8,7 +8,7 @@ class Box:
         self.x = x
         self.y = y
         self.gfx_x = x * game_manager.box_size
-        self.gfx_y = 0
+        self.gfx_y = y * game_manager.box_size
         self.gfx_z = 170
 
         # 3d set up
@@ -51,7 +51,7 @@ class Box:
         return self.m_c.check_field(self.y, self.x + direction)
 
     def move_horizontal(self, direction):
-        if self.m_c.check_field(self.y,self.x)==self:
+        if self.m_c.check_field(self.y, self.x) == self:
             self.m_c.release_field(self.y, self.x)
         self.x = self.x + direction
         self.m_c.block_field(self.y, self.x, self)
