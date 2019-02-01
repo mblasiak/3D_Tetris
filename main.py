@@ -9,6 +9,7 @@ class MyApp(ShowBase):
         self.gM.drop_new()
         self.taskMgr.add(self.gM.moveBlocks, "MovAll")
 
-
 app = MyApp()
+app.setFrameRateMeter(True)
+
 app.run()
