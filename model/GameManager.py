@@ -7,7 +7,7 @@ from .Blocks import BlockBox
 class GameManager:
 
     def __init__(self, app):
-        self.SIZE_X = 5
+        self.SIZE_X = 4
         self.SIZE_Y = 20
         game_space = np.zeros((self.SIZE_Y, self.SIZE_X)).tolist()
         self.mc = MapController(game_space)

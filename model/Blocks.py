@@ -61,5 +61,5 @@ class BlockBox(Block):
         self.a = Box(game_manager, x-1, y, app, map_controller)
         self.b = Box(game_manager, x, y, app, map_controller)
         self.c = Box(game_manager, x, y-1, app, map_controller)
-        #self.d= Box(game_manager, x-1, y, app, map_controller)
-        super().__init__([self.a, self.b,self.c])
+        self.d= Box(game_manager, x-1, y-1, app, map_controller)
+        super().__init__([self.a, self.b,self.c,self.d])

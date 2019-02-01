@@ -30,19 +30,17 @@ class Box:
 
     def fall(self):
         self.box_model.setPos(self.gfx_x, self.gfx_z, self.gfx_y)
-        if self.m_c.check_field(self.y - 1, self.x) == True:
-            self.move_down_itv = self.box_model.posInterval(self.game_manager.game_speed,
-                                                            Point3(self.gfx_x, self.gfx_z, self.gfx_y - self.box_size),
-                                                            startPos=Point3(self.gfx_x, self.gfx_z, self.gfx_y))
+        self.move_down_itv = self.box_model.posInterval(self.game_manager.game_speed,
+                                                        Point3(self.gfx_x, self.gfx_z, self.gfx_y - self.box_size),
+                                                        startPos=Point3(self.gfx_x, self.gfx_z, self.gfx_y))
+        if self.m_c.check_field(self.y, self.x) == self:
             self.m_c.release_field(self.y, self.x)
-            self.y = self.y - 1
-            self.m_c.block_field(self.y, self.x, self)
+        self.y = self.y - 1
+        self.m_c.block_field(self.y, self.x, self)
 
-            self.move_down_itv.start()
-            self.gfx_y = self.gfx_y - self.box_size
-            return 1
-        else:
-            return 0
+        self.move_down_itv.start()
+        self.gfx_y = self.gfx_y - self.box_size
+
 
     def is_animation_playing(self):
         return self.move_down_itv.isPlaying()

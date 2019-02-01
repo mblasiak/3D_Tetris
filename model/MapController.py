@@ -17,19 +17,21 @@ class MapController:
         self.blocks_map[y][x] = 0
 
     def remove_full_row(self):
-
+        drop_list=[]
         for y in range(len(self.blocks_map)):
             filled_count = 0
             for x in self.blocks_map[y]:
                 if x != 0:
                     filled_count += 1
             if filled_count == len(self.blocks_map[y]):
-
+                drop_list.append(y)
                 for x in range(len(self.blocks_map[y])):
                     self.blocks_map[y][x].remove()
                     self.blocks_map[y][x] = 0
 
-                for p in range(y, len(self.blocks_map)):
-                    for j in self.blocks_map[p]:
-                        if j != 0:
-                            j.fall()
+        if len(drop_list)>0:
+            lowest=min(drop_list)
+            for p in range(lowest, len(self.blocks_map)):
+                for j in self.blocks_map[p]:
+                    if j != 0:
+                        j.fall()
