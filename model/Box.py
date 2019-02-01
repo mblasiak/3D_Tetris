@@ -30,6 +30,7 @@ class Box:
         self.box_model.setPos(self.gfx_x, self.gfx_z, self.gfx_y)
 
     def fall(self):
+        print("fallll")
         self.box_model.setPos(self.gfx_x, self.gfx_z, self.gfx_y)
         self.move_down_itv = self.box_model.posInterval(self.game_manager.game_speed,
                                                         Point3(self.gfx_x, self.gfx_z, self.gfx_y - self.box_size),

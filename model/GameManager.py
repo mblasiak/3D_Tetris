@@ -13,14 +13,14 @@ class GameManager:
         game_space = np.zeros((self.SIZE_Y, self.SIZE_X)).tolist()
         self.mc = MapController(game_space)
         self.app = app
-        self.game_speed = 0.12
+        self.game_speed = 0.1
         self.box_size = 2
         self.current_box = None
 
     def drop_new(self):
         top = self.SIZE_Y - 1
         midlle = round(self.SIZE_X / 2)
-        if self.mc.check_field(top, midlle):
+        if self.mc.check_field(top, midlle)==True:
             box = BlockBox(self, self.app, self.mc, midlle, top)
             self.current_box = box
             return True
