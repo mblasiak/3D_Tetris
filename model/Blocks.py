@@ -1,5 +1,5 @@
 from .Box import Box
-
+from .MapController import FiledStatus
 
 class Block:
 
@@ -9,9 +9,9 @@ class Block:
     def can_fall(self):
         for box in self.boxes:
             z = box.can_fall()
-            if z==True:
+            if z==FiledStatus.free:
                 continue
-            if z not in self.boxes or z == False:
+            if z not in self.boxes or z == FiledStatus.out_of_range:
                 return False
         return True
 
@@ -33,9 +33,9 @@ class Block:
     def can_move_horizontal(self, direction):
         for box in self.boxes:
             z=box.can_move_horizontal(direction)
-            if z==True:
+            if z==FiledStatus.free:
                 continue
-            if z not in self.boxes or z == False:
+            if z not in self.boxes or z == FiledStatus.out_of_range:
                 return False
         return True
 

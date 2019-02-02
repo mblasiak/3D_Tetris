@@ -1,26 +1,26 @@
 import numpy as np
 from model.MapController import MapController
-from .Box import Box
 from .Blocks import BlockBox
+from .MapController import FiledStatus
 
 
 class GameManager:
 
     def __init__(self, app):
-        self.SIZE_X = 4
+        self.SIZE_X = 10
         self.SIZE_Y = 40
         self.box_model = app.loader.loadModel("resources/PS2.egg")
         game_space = np.zeros((self.SIZE_Y, self.SIZE_X)).tolist()
         self.mc = MapController(game_space)
         self.app = app
-        self.game_speed = 0.001
+        self.game_speed = 0.1
         self.box_size = 2
         self.current_box = None
 
     def drop_new(self):
         top = self.SIZE_Y - 1
         midlle = round(self.SIZE_X / 2)
-        if self.mc.check_field(top, midlle)==True:
+        if self.mc.check_field(top, midlle)==FiledStatus.free:
             box = BlockBox(self, self.app, self.mc, midlle, top)
             self.current_box = box
             return True
@@ -35,9 +35,8 @@ class GameManager:
         if not self.current_box.is_animation_playing():
 
             if not self.current_box.fall():
-                self.mc.remove_full_row()
+                self.mc.remove_full_rows()
                 still_playing = self.drop_new()
-               #self.app.render.analyze()
                 if not still_playing:
                     return task.done
         return task.cont
