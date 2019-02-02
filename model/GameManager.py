@@ -1,6 +1,6 @@
 import numpy as np
 from model.MapController import MapController
-from .Blocks import BlockBox
+from .Blocks import *
 from .MapController import FiledStatus
 
 
@@ -21,7 +21,7 @@ class GameManager:
         top = self.SIZE_Y - 1
         midlle = round(self.SIZE_X / 2)
         if self.mc.check_field(top, midlle)==FiledStatus.free:
-            box = BlockBox(self, self.app, self.mc, midlle, top)
+            box = BlockL(self, self.app, self.mc, midlle, top)
             self.current_box = box
             return True
         return False
@@ -29,6 +29,7 @@ class GameManager:
     def handle_buttons(self):
         self.app.accept("arrow_left", self.current_box.move_left)
         self.app.accept("arrow_right", self.current_box.move_right)
+        self.app.accept("space", self.current_box.rotate)
 
     def moveBlocks(self, task):
         self.handle_buttons()

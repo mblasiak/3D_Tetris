@@ -29,6 +29,13 @@ class Box:
     def update_box(self):
         self.box_model.setPos(self.gfx_x, self.gfx_z, self.gfx_y)
 
+    def jump_up(self):
+        if self.m_c.check_field(self.y, self.x) == self:
+            self.m_c.release_field(self.y, self.x)
+        self.y=self.y+1
+        self.m_c.block_field(self.y, self.x, self)
+        self.gfx_y=self.gfx_y+self.box_size
+
     def fall(self):
         self.box_model.setPos(self.gfx_x, self.gfx_z, self.gfx_y)
         self.move_down_itv = self.box_model.posInterval(self.game_manager.game_speed,
