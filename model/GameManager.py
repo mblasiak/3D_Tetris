@@ -1,6 +1,7 @@
 import numpy as np
 from model.MapController import MapController
-from .Blocks import *
+from model.Shapes.Block import *
+from model.Shapes.L_block.LBlock import BlockL
 from .MapController import FiledStatus
 
 
