@@ -1,5 +1,6 @@
 from model.Box import Box
 from model.Shapes.Block import Block
+from model.Shapes.L_block.LeftDownState import LeftDownState
 
 
 class BlockL(Block):
@@ -10,16 +11,7 @@ class BlockL(Block):
         self.c = Box(game_manager, x, y - 2, app, map_controller)
         self.d = Box(game_manager, x + 1, y - 2, app, map_controller)
         self.state = 1
-        super().__init__([self.a, self.b, self.c, self.d])
+        super().__init__([self.a, self.b, self.c, self.d],LeftDownState(self))
 
     def rotate(self):
-        if self.state == 1:
-            self.a.move_right()
-            self.b.move_right()
-            self.state += 1
-            return
-        if self.state == 2:
-            self.c.jump_up()
-            self.c.jump_up()
-            self.state += 1
-            return
+        self.state.rotate()

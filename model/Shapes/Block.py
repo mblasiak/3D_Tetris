@@ -4,7 +4,8 @@ from model.MapController import FiledStatus
 
 class Block:
 
-    def __init__(self, boxes_list):
+    def __init__(self, boxes_list,inital_state):
+        self.state=inital_state
         self.boxes = boxes_list
 
     def can_fall(self):
@@ -55,7 +56,9 @@ class Block:
         for box in self.boxes:
             box.remove()
 
+    def set_state(self, new_state):
+        self.state = new_state
+
     def rotate(self):
+
         pass
-
-
