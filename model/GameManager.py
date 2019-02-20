@@ -1,7 +1,7 @@
 import numpy as np
 from model.MapManager import MapManager
 from model.Shapes.L_block.LBlock import BlockL
-from .MapManager import FiledStatus
+from .MapManager import GameField
 
 
 class GameManager:
@@ -20,7 +20,7 @@ class GameManager:
     def drop_new(self):
         top = self.SIZE_Y - 1
         midlle = round(self.SIZE_X / 2)
-        if self.mc.check_field(top, midlle)==FiledStatus.free:
+        if self.mc.check_field(top, midlle)==GameField.free:
             box = BlockL(self, self.app, self.mc, midlle, top)
             self.current_box = box
             return True

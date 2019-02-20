@@ -1,5 +1,5 @@
 from model.Box import Box
-from model.MapManager import FiledStatus
+from model.MapManager import GameField
 
 
 class Block:
@@ -11,9 +11,9 @@ class Block:
     def can_fall(self):
         for box in self.boxes:
             z = box.can_fall()
-            if z == FiledStatus.free:
+            if z == GameField.free:
                 continue
-            if z not in self.boxes or z == FiledStatus.out_of_range:
+            if z not in self.boxes or z == GameField.out_of_range:
                 return False
         return True
 
@@ -35,9 +35,9 @@ class Block:
     def can_move_horizontal(self, direction):
         for box in self.boxes:
             z = box.can_move_horizontal(direction)
-            if z == FiledStatus.free:
+            if z == GameField.free:
                 continue
-            if z not in self.boxes or z == FiledStatus.out_of_range:
+            if z not in self.boxes or z == GameField.out_of_range:
                 return False
         return True
 

@@ -1,9 +1,5 @@
-from enum import Enum
 
-
-class FiledStatus(Enum):
-    out_of_range = 1
-    free = 0
+from model.GameField.GameField import GameField
 
 
 class MapManager:
@@ -12,9 +8,9 @@ class MapManager:
 
     def check_field(self, y, x):
         if y >= len(self.blocks_map[:][:]) or y < 0 or x >= len(self.blocks_map[1]) or x < 0:
-            return FiledStatus.out_of_range
+            return GameField.out_of_range
         if self.blocks_map[y][x] == 0:
-            return FiledStatus.free
+            return GameField.free
         else:
             return self.blocks_map[y][x]
 
