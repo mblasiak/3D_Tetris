@@ -1,8 +1,7 @@
 import numpy as np
-from model.MapController import MapController
-from model.Shapes.Block import *
+from model.MapManager import MapManager
 from model.Shapes.L_block.LBlock import BlockL
-from .MapController import FiledStatus
+from .MapManager import FiledStatus
 
 
 class GameManager:
@@ -12,7 +11,7 @@ class GameManager:
         self.SIZE_Y = 40
         self.box_model = app.loader.loadModel("resources/PS2.egg")
         game_space = np.zeros((self.SIZE_Y, self.SIZE_X)).tolist()
-        self.mc = MapController(game_space)
+        self.mc = MapManager(game_space)
         self.app = app
         self.game_speed = 0.1
         self.box_size = 2

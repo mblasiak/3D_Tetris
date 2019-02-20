@@ -1,5 +1,5 @@
 from model.Box import Box
-from model.MapController import FiledStatus
+from model.MapManager import FiledStatus
 
 
 class Block:

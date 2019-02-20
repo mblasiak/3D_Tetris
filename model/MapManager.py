@@ -6,7 +6,7 @@ class FiledStatus(Enum):
     free = 0
 
 
-class MapController:
+class MapManager:
     def __init__(self, block_map):
         self.blocks_map = block_map
 
