@@ -19,7 +19,7 @@ class Block:
 
     def fall(self):
         for box in self.boxes:
-            box.update_box()
+            box.refresh()
         if self.can_fall():
             for box in self.boxes:
                 box.fall()
@@ -60,5 +60,4 @@ class Block:
         self.state = new_state
 
     def rotate(self):
-
         pass
