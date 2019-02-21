@@ -1,6 +1,3 @@
-from model.Box import Box
-from model.MapManager import GameField
-
 
 class Block:
 
@@ -10,10 +7,10 @@ class Block:
 
     def can_fall(self):
         for box in self.boxes:
-            z = box.can_fall()
-            if z == GameField.free:
+            z = box.under_neighbour()
+            if not z.is_movable():
                 continue
-            if z not in self.boxes or z == GameField.out_of_range:
+            if z.taken_by() not in self.boxes or z.is_out_of_rang():
                 return False
         return True
 
@@ -34,10 +31,10 @@ class Block:
 
     def can_move_horizontal(self, direction):
         for box in self.boxes:
-            z = box.can_move_horizontal(direction)
-            if z == GameField.free:
+            z = box.horizontal_neighbour(direction)
+            if not z.is_movable():
                 continue
-            if z not in self.boxes or z == GameField.out_of_range:
+            if z.taken_by() not in self.boxes or z.is_out_of_rang():
                 return False
         return True
 

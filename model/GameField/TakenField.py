@@ -1,9 +1,9 @@
-from model.GameField.GameField import GameField
+from model.GameField.Field import GameField
 
 
 class TakenField(GameField):
 
-    def is_taken(self):
+    def is_movable(self):
         return True
 
     def is_out_of_rang(self):

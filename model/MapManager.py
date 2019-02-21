@@ -1,5 +1,6 @@
-
-from model.GameField.GameField import GameField
+from model.GameField.EmptyField import EmptyField
+from model.GameField.OutField import OutField
+from model.GameField.TakenField import TakenField
 
 
 class MapManager:
@@ -8,11 +9,11 @@ class MapManager:
 
     def check_field(self, y, x):
         if y >= len(self.blocks_map[:][:]) or y < 0 or x >= len(self.blocks_map[1]) or x < 0:
-            return GameField.out_of_range
+            return OutField()
         if self.blocks_map[y][x] == 0:
-            return GameField.free
+            return EmptyField()
         else:
-            return self.blocks_map[y][x]
+            return TakenField(self.blocks_map[y][x])
 
     def block_field(self, y, x, box):
         self.blocks_map[y][x] = box

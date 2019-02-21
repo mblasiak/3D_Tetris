@@ -13,21 +13,21 @@ class Box:
         self.map_controller.block_field(self.y, self.x, self)
         self.box_gfx = BoxGFX(game_manager, x, y, app, map_controller)
 
-    def can_fall(self):
+    def under_neighbour(self):
         return self.map_controller.check_field(self.y - 1, self.x)
 
     def refresh(self):
         self.box_gfx.refresh()
 
     def move_up(self):
-        if self.map_controller.check_field(self.y, self.x) == self:
+        if self.map_controller.check_field(self.y, self.x).taken_by() == self:
             self.map_controller.release_field(self.y, self.x)
         self.y = self.y + 1
         self.map_controller.block_field(self.y, self.x, self)
         self.box_gfx.move_up()
 
     def fall(self):
-        if self.map_controller.check_field(self.y, self.x) == self:
+        if self.map_controller.check_field(self.y, self.x).taken_by() == self:
             self.map_controller.release_field(self.y, self.x)
         self.y = self.y - 1
         self.map_controller.block_field(self.y, self.x, self)
@@ -36,11 +36,11 @@ class Box:
     def is_animation_playing(self):
         return self.box_gfx.is_animation_playing()
 
-    def can_move_horizontal(self, direction):
+    def horizontal_neighbour(self, direction):
         return self.map_controller.check_field(self.y, self.x + direction)
 
     def move_horizontal(self, direction):
-        if self.map_controller.check_field(self.y, self.x) == self:
+        if self.map_controller.check_field(self.y, self.x).taken_by() == self:
             self.map_controller.release_field(self.y, self.x)
         self.x = self.x + direction
         self.map_controller.block_field(self.y, self.x, self)
