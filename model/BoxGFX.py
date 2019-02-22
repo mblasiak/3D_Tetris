@@ -32,8 +32,9 @@ class BoxGFX:
     def move_up(self):
         self.gfx_y = self.gfx_y + self.box_size
 
-    def move_horizontal(self, direction):
-        self.gfx_x = self.gfx_x + direction * self.box_size
+    def move(self, x_direction, y_direction):
+        self.gfx_x = self.gfx_x + x_direction * self.box_size
+        self.gfx_y = self.gfx_y + y_direction * self.box_size
 
     def refresh(self):
         self.box_model.setPos(self.gfx_x, self.gfx_z, self.gfx_y)

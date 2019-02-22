@@ -41,7 +41,8 @@ class Block:
     def move_horizontal(self, direction):
         if self.can_move_horizontal(direction):
             for box in self.boxes:
-                box.move_horizontal(direction)
+                box.move(direction,0)
+                box.box_gfx.move(direction,0)
 
     def move_left(self):
         self.move_horizontal(-1)

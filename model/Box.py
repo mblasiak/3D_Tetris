@@ -20,17 +20,11 @@ class Box:
         self.box_gfx.refresh()
 
     def move_up(self):
-        if self.map_controller.check_field(self.y, self.x).taken_by() == self:
-            self.map_controller.release_field(self.y, self.x)
-        self.y = self.y + 1
-        self.map_controller.block_field(self.y, self.x, self)
-        self.box_gfx.move_up()
+        self.move(0, 1)
+        self.box_gfx.move(0, 1)
 
     def fall(self):
-        if self.map_controller.check_field(self.y, self.x).taken_by() == self:
-            self.map_controller.release_field(self.y, self.x)
-        self.y = self.y - 1
-        self.map_controller.block_field(self.y, self.x, self)
+        self.move(0, -1)
         self.box_gfx.start_falling_animation()
 
     def is_animation_playing(self):
@@ -39,18 +33,19 @@ class Box:
     def horizontal_neighbour(self, direction):
         return self.map_controller.check_field(self.y, self.x + direction)
 
-    def move_horizontal(self, direction):
-        if self.map_controller.check_field(self.y, self.x).taken_by() == self:
-            self.map_controller.release_field(self.y, self.x)
-        self.x = self.x + direction
+    def move(self, x_direction, y_direction):
+        self.map_controller.release_field(self.y, self.x, self)
+        self.x = self.x + x_direction
+        self.y = self.y + y_direction
         self.map_controller.block_field(self.y, self.x, self)
-        self.box_gfx.move_horizontal(direction)
 
     def move_left(self):
-        self.move_horizontal(-1)
+        self.move(-1, 0)
+        self.box_gfx.move(-1, 0)
 
     def move_right(self):
-        self.move_horizontal(+1)
+        self.move(+1, 0)
+        self.box_gfx.move(1, 0)
 
     def remove(self):
         self.box_gfx.remove()

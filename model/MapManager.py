@@ -18,8 +18,9 @@ class MapManager:
     def block_field(self, y, x, box):
         self.blocks_map[y][x] = box
 
-    def release_field(self, y, x):
-        self.blocks_map[y][x] = 0
+    def release_field(self, y, x, box):
+        if self.blocks_map[y][x] == box:
+            self.blocks_map[y][x] = 0
 
     def remove_full_rows(self):
         drop_list = []
