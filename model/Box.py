@@ -19,12 +19,10 @@ class Box:
     def refresh(self):
         self.box_gfx.refresh()
 
-    def move_up(self):
-        self.move(0, 1)
-        self.box_gfx.move(0, 1)
-
     def fall(self):
-        self.move(0, -1)
+        self.map_controller.release_field(self.y, self.x, self)
+        self.y = self.y - 1
+        self.map_controller.block_field(self.y, self.x, self)
         self.box_gfx.start_falling_animation()
 
     def is_animation_playing(self):
@@ -38,14 +36,7 @@ class Box:
         self.x = self.x + x_direction
         self.y = self.y + y_direction
         self.map_controller.block_field(self.y, self.x, self)
-
-    def move_left(self):
-        self.move(-1, 0)
-        self.box_gfx.move(-1, 0)
-
-    def move_right(self):
-        self.move(+1, 0)
-        self.box_gfx.move(1, 0)
+        self.box_gfx.move(x_direction,y_direction)
 
     def remove(self):
         self.box_gfx.remove()

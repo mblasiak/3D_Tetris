@@ -8,6 +8,6 @@ class LeftDownState(RotationState):
         self.block.set_state(LeftUpState(self.block))
 
     def rotate(self):
-        self.block.a.move_right()
-        self.block.b.move_right()
+        self.block.a.move(1,0)
+        self.block.b.move(1,0)
         self.next_state()

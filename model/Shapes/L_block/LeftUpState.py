@@ -8,6 +8,6 @@ class LeftUpState(RotationState):
 
     def rotate(self):
         return
-        self.block.c.move_up()
-        self.block.c.move_up()
+        self.block.c.move(0, 1)
+        self.block.c.move(0, 1)
         self.next_state()
