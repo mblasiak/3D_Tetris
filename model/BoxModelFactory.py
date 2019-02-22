@@ -1,4 +1,4 @@
-class BoxGFXFactory:
+class BoxModelFactory:
 
     def __init__(self, app):
         self.loaded_models = {}

@@ -3,7 +3,7 @@ from model.GameMap import GameMap
 from model.Shapes.L_block.LBlock import LBlock
 from model.Shapes.O_block.OBlock import OBlock
 from model.Directions.Directions import *
-from model.BoxModelFactory import BoxGFXFactory
+from model.BoxModelFactory import BoxModelFactory
 
 
 class GameManager:
@@ -17,7 +17,7 @@ class GameManager:
         self.game_speed = 0.1
         self.box_size = 2
         self.current_box = None
-        self.model_factory = BoxGFXFactory(app)
+        self.model_3d_factory = BoxModelFactory(app)
 
     def drop_new(self):
         top = self.SIZE_Y - 1

@@ -10,19 +10,19 @@ class BoxGFX:
         self.box_size = game_manager.box_size
         self.game_manager = game_manager
 
-        self.box_model = app.render.attachNewNode("Box Holder")
-        game_manager.model_factory.get_model(WoodenBox()).instanceTo(self.box_model)
-        self.box_model.setPos(self.gfx_x, self.gfx_z, self.gfx_y)
-        self.move_down_itv = self.box_model.posInterval(self.game_manager.game_speed,
-                                                        Point3(self.gfx_x, self.gfx_z, self.gfx_y - self.box_size))
+        self.box_holder = app.render.attachNewNode("Box Holder")
+        game_manager.model_factory.get_model(WoodenBox()).instanceTo(self.box_holder)
+        self.box_holder.setPos(self.gfx_x, self.gfx_z, self.gfx_y)
+        self.move_down_itv = self.box_holder.posInterval(self.game_manager.game_speed,
+                                                         Point3(self.gfx_x, self.gfx_z, self.gfx_y - self.box_size))
 
         self.m_c = map_controller
 
     def start_falling_animation(self):
-        self.box_model.setPos(self.gfx_x, self.gfx_z, self.gfx_y)
-        self.move_down_itv = self.box_model.posInterval(self.game_manager.game_speed,
-                                                        Point3(self.gfx_x, self.gfx_z, self.gfx_y - self.box_size),
-                                                        startPos=Point3(self.gfx_x, self.gfx_z, self.gfx_y))
+        self.box_holder.setPos(self.gfx_x, self.gfx_z, self.gfx_y)
+        self.move_down_itv = self.box_holder.posInterval(self.game_manager.game_speed,
+                                                         Point3(self.gfx_x, self.gfx_z, self.gfx_y - self.box_size),
+                                                         startPos=Point3(self.gfx_x, self.gfx_z, self.gfx_y))
         self.move_down_itv.start()
         self.gfx_y = self.gfx_y - self.box_size
 
@@ -34,5 +34,5 @@ class BoxGFX:
         self.gfx_y = self.gfx_y + direction.y * self.box_size
 
     def remove(self):
-        self.box_model.removeNode()
+        self.box_holder.removeNode()
         self.move_down_itv = None
