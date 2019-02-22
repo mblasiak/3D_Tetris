@@ -17,14 +17,14 @@ class GameManager:
         self.game_speed = 0.1
         self.box_size = 2
         self.current_box = None
-        self.model_3d_factory = BoxModelFactory(app)
+        self.model_factory = BoxModelFactory(app)
 
     def drop_new(self):
         top = self.SIZE_Y - 1
         middle = round(self.SIZE_X / 2)
         if not self.mc.check(top, middle).is_movable():
-            # box = BlockL(self, self.app, self.mc, middle, top)
-            box = OBlock(self, self.app, self.mc, middle, top)
+            box = LBlock(self, self.app, self.mc, middle, top)
+            #box = OBlock(self, self.app, self.mc, middle, top)
             self.current_box = box
             return True
         return False

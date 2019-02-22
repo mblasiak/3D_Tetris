@@ -1,12 +1,12 @@
-from model.Shapes.L_block.LeftUpState import LeftUpState
 from model.Shapes.RotationState import RotationState
 from model.Directions.Directions import *
+from model.Shapes.L_block.RightDownState import RightDownState
 
 
 class LeftDownState(RotationState):
 
     def next_state(self):
-        self.block.set_state(LeftUpState(self.block))
+        self.block.set_state(RightDownState(self.block))
 
     def rotate(self):
         self.block.a.move(OneRight())

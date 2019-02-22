@@ -1,6 +1,7 @@
 from panda3d.core import Point3
 from model.BoxModels.BoxModels import *
 
+
 class BoxGFX:
 
     def __init__(self, game_manager, x, y, app, map_controller):
