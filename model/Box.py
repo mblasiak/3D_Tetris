@@ -29,14 +29,14 @@ class Box:
         return self.box_gfx.is_animation_playing()
 
     def horizontal_neighbour(self, direction):
-        return self.map_controller.check_field(self.y, self.x + direction)
+        return self.map_controller.check_field(self.y, self.x + direction.x)
 
-    def move(self, x_direction, y_direction):
+    def move(self, direction):
         self.map_controller.release_field(self.y, self.x, self)
-        self.x = self.x + x_direction
-        self.y = self.y + y_direction
+        self.x = self.x + direction.x
+        self.y = self.y + direction.y
         self.map_controller.block_field(self.y, self.x, self)
-        self.box_gfx.move(x_direction,y_direction)
+        self.box_gfx.move(direction)
 
     def remove(self):
         self.box_gfx.remove()

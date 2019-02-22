@@ -37,10 +37,10 @@ class Block:
                 return False
         return True
 
-    def move(self, x_direction, y_direction):
-        if self.can_move_horizontal(x_direction):
+    def move(self, direction):
+        if self.can_move_horizontal(direction):
             for box in self.boxes:
-                box.move(x_direction, y_direction)
+                box.move(direction)
 
     def remove(self):
         for box in self.boxes:

@@ -1,6 +1,6 @@
 from model.Shapes.L_block.LeftUpState import LeftUpState
 from model.Shapes.RotationState import RotationState
-
+from model.Directions.Directions import *
 
 class LeftDownState(RotationState):
 
@@ -8,6 +8,6 @@ class LeftDownState(RotationState):
         self.block.set_state(LeftUpState(self.block))
 
     def rotate(self):
-        self.block.a.move(1,0)
-        self.block.b.move(1,0)
+        self.block.a.move(OneUp())
+        self.block.b.move(OneUp())
         self.next_state()

@@ -1,7 +1,7 @@
 import numpy as np
 from model.MapManager import MapManager
 from model.Shapes.L_block.LBlock import BlockL
-from model.GameField.EmptyField import EmptyField
+from model.Directions.Directions import *
 
 
 class GameManager:
@@ -28,8 +28,8 @@ class GameManager:
 
     def handle_buttons(self):
         #TODO Use Firections intead of values
-        self.app.accept("arrow_left", self.current_box.move, [-1, 0])
-        self.app.accept("arrow_right", self.current_box.move, [1, 0])
+        self.app.accept("arrow_left", self.current_box.move, [OneLeft()])
+        self.app.accept("arrow_right", self.current_box.move, [OneRight()])
         self.app.accept("space", self.current_box.rotate)
 
     def moveBlocks(self, task):

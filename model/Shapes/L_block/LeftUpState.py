@@ -1,5 +1,5 @@
 from model.Shapes.RotationState import RotationState
-
+from model.Directions.Directions import *
 
 class LeftUpState(RotationState):
 
@@ -8,6 +8,6 @@ class LeftUpState(RotationState):
 
     def rotate(self):
         return
-        self.block.c.move(0, 1)
-        self.block.c.move(0, 1)
+        self.block.c.move(OneRight())
+        self.block.c.move(OneRight())
         self.next_state()
