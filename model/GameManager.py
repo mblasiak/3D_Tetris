@@ -1,6 +1,6 @@
 import numpy as np
 from model.MapManager import MapManager
-from model.Shapes.L_block.LBlock import BlockL
+from model.Shapes.L_block.LBlock import LBlock
 from model.Shapes.O_block.OBlock import OBlock
 from model.Directions.Directions import *
 
