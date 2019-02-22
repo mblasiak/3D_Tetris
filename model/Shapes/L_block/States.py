@@ -69,11 +69,12 @@ class LeftUpState(RotationState):
     def rotate(self):
         self.block.a.move(OneUp())
 
-        self.block.b.move(OneDown())
+        #self.block.b.move(OneDown())
         self.block.b.move(OneLeft())
 
         self.block.c.move(OneLeft())
         self.block.c.move(OneLeft())
+        self.block.c.move(OneDown())
 
         self.block.d.move(OneDown())
         self.block.d.move(OneDown())
