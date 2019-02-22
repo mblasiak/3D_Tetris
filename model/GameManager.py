@@ -3,6 +3,7 @@ from model.GameMap import GameMap
 from model.Shapes.L_block.LBlock import LBlock
 from model.Shapes.O_block.OBlock import OBlock
 from model.Directions.Directions import *
+from model.BoxModelFactory import BoxGFXFactory
 
 
 class GameManager:
@@ -10,19 +11,19 @@ class GameManager:
     def __init__(self, app):
         self.SIZE_X = 10
         self.SIZE_Y = 40
-        self.box_model = app.loader.loadModel("resources/PS2.egg")
         game_space = np.zeros((self.SIZE_Y, self.SIZE_X)).tolist()
         self.mc = GameMap(game_space)
         self.app = app
         self.game_speed = 0.1
         self.box_size = 2
         self.current_box = None
+        self.model_factory = BoxGFXFactory(app)
 
     def drop_new(self):
         top = self.SIZE_Y - 1
         middle = round(self.SIZE_X / 2)
         if not self.mc.check(top, middle).is_movable():
-            #box = BlockL(self, self.app, self.mc, middle, top)
+            # box = BlockL(self, self.app, self.mc, middle, top)
             box = OBlock(self, self.app, self.mc, middle, top)
             self.current_box = box
             return True
