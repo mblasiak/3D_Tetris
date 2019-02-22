@@ -1,6 +1,6 @@
 from model.Box import Box
 from model.Shapes.Block import Block
-from model.Shapes.L_block.LeftDownState import LeftDownState
+from model.Shapes.L_block.States import LeftDownState
 
 
 class LBlock(Block):

@@ -10,11 +10,11 @@ class GameManager:
 
     def __init__(self, app):
         self.SIZE_X = 10
-        self.SIZE_Y = 40
+        self.SIZE_Y = 20
         game_space = np.zeros((self.SIZE_Y, self.SIZE_X)).tolist()
         self.mc = GameMap(game_space)
         self.app = app
-        self.game_speed = 0.1
+        self.game_speed = 1
         self.box_size = 2
         self.current_box = None
         self.model_factory = BoxModelFactory(app)
