@@ -33,9 +33,6 @@ class BoxGFX:
         self.gfx_x = self.gfx_x + direction.x * self.box_size
         self.gfx_y = self.gfx_y + direction.y * self.box_size
 
-    def refresh(self):
-        self.box_model.setPos(self.gfx_x, self.gfx_z, self.gfx_y)
-
     def remove(self):
         self.box_model.removeNode()
         self.move_down_itv = None

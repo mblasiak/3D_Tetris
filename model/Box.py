@@ -13,10 +13,6 @@ class Box:
         self.map_controller.block_field(self.y, self.x, self)
         self.box_gfx = BoxGFX(game_manager, x, y, app, map_controller)
 
-    def refresh(self):
-        self.box_gfx.refresh()
-        pass
-
     def fall(self):
         self.map_controller.release_field(self.y, self.x, self)
         self.y = self.y - 1

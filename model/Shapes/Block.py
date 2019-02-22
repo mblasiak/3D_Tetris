@@ -8,8 +8,6 @@ class Block:
         self.boxes = boxes_list
 
     def fall(self):
-        for box in self.boxes:
-            box.refresh()
         if self.can_move(OneDown()):
             for box in self.boxes:
                 box.fall()
