@@ -13,11 +13,9 @@ class Box:
         self.map_controller.block_field(self.y, self.x, self)
         self.box_gfx = BoxGFX(game_manager, x, y, app, map_controller)
 
-    def under_neighbour(self):
-        return self.map_controller.check_field(self.y - 1, self.x)
-
     def refresh(self):
         self.box_gfx.refresh()
+        pass
 
     def fall(self):
         self.map_controller.release_field(self.y, self.x, self)
@@ -28,8 +26,8 @@ class Box:
     def is_animation_playing(self):
         return self.box_gfx.is_animation_playing()
 
-    def horizontal_neighbour(self, direction):
-        return self.map_controller.check_field(self.y, self.x + direction.x)
+    def neighbour(self, direction):
+        return self.map_controller.check_field(self.y+direction.y, self.x + direction.x)
 
     def move(self, direction):
         self.map_controller.release_field(self.y, self.x, self)

@@ -1,22 +1,16 @@
+from model.Directions.Directions import *
+
+
 class Block:
 
-    def __init__(self, boxes_list, inital_state):
-        self.state = inital_state
+    def __init__(self, boxes_list, initial_state):
+        self.state = initial_state
         self.boxes = boxes_list
-
-    def can_fall(self):
-        for box in self.boxes:
-            z = box.under_neighbour()
-            if not z.is_movable():
-                continue
-            if z.taken_by() not in self.boxes or z.is_out_of_rang():
-                return False
-        return True
 
     def fall(self):
         for box in self.boxes:
             box.refresh()
-        if self.can_fall():
+        if self.can_move(OneDown()):
             for box in self.boxes:
                 box.fall()
             return True
@@ -28,9 +22,9 @@ class Block:
                 return True
         return False
 
-    def can_move_horizontal(self, direction):
+    def can_move(self, direction):
         for box in self.boxes:
-            field = box.horizontal_neighbour(direction)
+            field = box.neighbour(direction)
             if not field.is_movable():
                 continue
             if field.taken_by() not in self.boxes or field.is_out_of_rang():
@@ -38,7 +32,7 @@ class Block:
         return True
 
     def move(self, direction):
-        if self.can_move_horizontal(direction):
+        if self.can_move(direction):
             for box in self.boxes:
                 box.move(direction)
 

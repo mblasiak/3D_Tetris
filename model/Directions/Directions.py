@@ -6,12 +6,12 @@ class Direction:
 
 class OneUp(Direction):
     def __init__(self):
-        super().__init__(0, -1)
+        super().__init__(0, 1)
 
 
 class OneDown(Direction):
     def __init__(self):
-        super().__init__(0, 1)
+        super().__init__(0, -1)
 
 
 class OneLeft(Direction):

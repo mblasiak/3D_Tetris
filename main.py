@@ -11,7 +11,7 @@ class MyApp(ShowBase):
         ShowBase.__init__(self)
         self.gM = GameManager(self)
         self.gM.drop_new()
-        self.taskMgr.add(self.gM.moveBlocks, "MovAll")
+        self.taskMgr.add(self.gM.play, "MovAll")
         globalClock.setMode(ClockObject.MLimited)
         globalClock.setFrameRate(120)
 

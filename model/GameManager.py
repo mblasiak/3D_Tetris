@@ -1,6 +1,7 @@
 import numpy as np
 from model.MapManager import MapManager
 from model.Shapes.L_block.LBlock import BlockL
+from model.Shapes.O_block.OBlock import OBlock
 from model.Directions.Directions import *
 
 
@@ -19,20 +20,20 @@ class GameManager:
 
     def drop_new(self):
         top = self.SIZE_Y - 1
-        midlle = round(self.SIZE_X / 2)
-        if not self.mc.check_field(top, midlle).is_movable():
-            box = BlockL(self, self.app, self.mc, midlle, top)
+        middle = round(self.SIZE_X / 2)
+        if not self.mc.check_field(top, middle).is_movable():
+            #box = BlockL(self, self.app, self.mc, middle, top)
+            box = OBlock(self, self.app, self.mc, middle, top)
             self.current_box = box
             return True
         return False
 
     def handle_buttons(self):
-        #TODO Use Firections intead of values
         self.app.accept("arrow_left", self.current_box.move, [OneLeft()])
         self.app.accept("arrow_right", self.current_box.move, [OneRight()])
         self.app.accept("space", self.current_box.rotate)
 
-    def moveBlocks(self, task):
+    def play(self, task):
         self.handle_buttons()
         if not self.current_box.is_animation_playing():
 
