@@ -10,26 +10,26 @@ class Box:
         self.x = x
         self.y = y
         self.map_controller = map_controller
-        self.map_controller.block_field(self.y, self.x, self)
+        self.map_controller.block(self.y, self.x, self)
         self.box_gfx = BoxGFX(game_manager, x, y, app, map_controller)
 
     def fall(self):
-        self.map_controller.release_field(self.y, self.x, self)
+        self.map_controller.release(self.y, self.x, self)
         self.y = self.y - 1
-        self.map_controller.block_field(self.y, self.x, self)
+        self.map_controller.block(self.y, self.x, self)
         self.box_gfx.start_falling_animation()
 
     def is_animation_playing(self):
         return self.box_gfx.is_animation_playing()
 
     def neighbour(self, direction):
-        return self.map_controller.check_field(self.y+direction.y, self.x + direction.x)
+        return self.map_controller.check(self.y + direction.y, self.x + direction.x)
 
     def move(self, direction):
-        self.map_controller.release_field(self.y, self.x, self)
+        self.map_controller.release(self.y, self.x, self)
         self.x = self.x + direction.x
         self.y = self.y + direction.y
-        self.map_controller.block_field(self.y, self.x, self)
+        self.map_controller.block(self.y, self.x, self)
         self.box_gfx.move(direction)
 
     def remove(self):

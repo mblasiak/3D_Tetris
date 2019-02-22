@@ -1,5 +1,5 @@
 import numpy as np
-from model.MapManager import MapManager
+from model.GameMap import GameMap
 from model.Shapes.L_block.LBlock import LBlock
 from model.Shapes.O_block.OBlock import OBlock
 from model.Directions.Directions import *
@@ -12,7 +12,7 @@ class GameManager:
         self.SIZE_Y = 40
         self.box_model = app.loader.loadModel("resources/PS2.egg")
         game_space = np.zeros((self.SIZE_Y, self.SIZE_X)).tolist()
-        self.mc = MapManager(game_space)
+        self.mc = GameMap(game_space)
         self.app = app
         self.game_speed = 0.1
         self.box_size = 2
@@ -21,7 +21,7 @@ class GameManager:
     def drop_new(self):
         top = self.SIZE_Y - 1
         middle = round(self.SIZE_X / 2)
-        if not self.mc.check_field(top, middle).is_movable():
+        if not self.mc.check(top, middle).is_movable():
             #box = BlockL(self, self.app, self.mc, middle, top)
             box = OBlock(self, self.app, self.mc, middle, top)
             self.current_box = box
