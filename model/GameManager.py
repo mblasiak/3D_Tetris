@@ -27,8 +27,9 @@ class GameManager:
         return False
 
     def handle_buttons(self):
-        self.app.accept("arrow_left", self.current_box.move_left)
-        self.app.accept("arrow_right", self.current_box.move_right)
+        #TODO Use Firections intead of values
+        self.app.accept("arrow_left", self.current_box.move, [-1, 0])
+        self.app.accept("arrow_right", self.current_box.move, [1, 0])
         self.app.accept("space", self.current_box.rotate)
 
     def moveBlocks(self, task):

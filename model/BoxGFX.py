@@ -29,9 +29,6 @@ class BoxGFX:
     def is_animation_playing(self):
         return self.move_down_itv.isPlaying()
 
-    def move_up(self):
-        self.gfx_y = self.gfx_y + self.box_size
-
     def move(self, x_direction, y_direction):
         self.gfx_x = self.gfx_x + x_direction * self.box_size
         self.gfx_y = self.gfx_y + y_direction * self.box_size

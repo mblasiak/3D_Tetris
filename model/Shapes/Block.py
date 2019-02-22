@@ -1,8 +1,7 @@
-
 class Block:
 
-    def __init__(self, boxes_list,inital_state):
-        self.state=inital_state
+    def __init__(self, boxes_list, inital_state):
+        self.state = inital_state
         self.boxes = boxes_list
 
     def can_fall(self):
@@ -31,23 +30,17 @@ class Block:
 
     def can_move_horizontal(self, direction):
         for box in self.boxes:
-            z = box.horizontal_neighbour(direction)
-            if not z.is_movable():
+            field = box.horizontal_neighbour(direction)
+            if not field.is_movable():
                 continue
-            if z.taken_by() not in self.boxes or z.is_out_of_rang():
+            if field.taken_by() not in self.boxes or field.is_out_of_rang():
                 return False
         return True
 
-    def move_horizontal(self, direction):
-        if self.can_move_horizontal(direction):
+    def move(self, x_direction, y_direction):
+        if self.can_move_horizontal(x_direction):
             for box in self.boxes:
-                box.move(direction,0)
-
-    def move_left(self):
-        self.move_horizontal(-1)
-
-    def move_right(self):
-        self.move_horizontal(1)
+                box.move(x_direction, y_direction)
 
     def remove(self):
         for box in self.boxes:
