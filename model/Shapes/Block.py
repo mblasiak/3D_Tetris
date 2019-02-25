@@ -3,7 +3,10 @@ from model.Directions.Directions import *
 
 class Block:
 
-    def __init__(self, boxes_list, initial_state):
+    def __init__(self, boxes_list, initial_state, center_x, center_y, game_manager):
+        self.game_manager = game_manager
+        self.center_y = center_y
+        self.center_x = center_x
         self.state = initial_state
         self.boxes = boxes_list
 
@@ -11,6 +14,7 @@ class Block:
         if self.can_move(OneDown()):
             for box in self.boxes:
                 box.fall()
+            self.center_y = self.center_y - 1
             return True
         return False
 
@@ -33,6 +37,8 @@ class Block:
         if self.can_move(direction):
             for box in self.boxes:
                 box.move(direction)
+            self.center_x = self.center_x + direction.x
+            self.center_y = self.center_y + direction.y
 
     def remove(self):
         for box in self.boxes:
@@ -40,6 +46,26 @@ class Block:
 
     def set_state(self, new_state):
         self.state = new_state
+
+    def can_spin(self):
+        neighbours = []
+        print("Sprwadzam")
+        for x in range(self.center_x - 1, self.center_x + 2):
+            for y in range(self.center_y - 1, self.center_y + 2):
+                field=self.game_manager.mc.check(y, x)
+                if field.is_out_of_rang():
+                    print("Out")
+                    print(x)
+                    print(y)
+                    return False
+                if field.is_taken():
+                    neighbours.append(field.taken_by())
+                    print("Somsiad")
+        for box in neighbours:
+            if box not in self.boxes:
+                print("Nie zawiera")
+                return False
+        return True
 
     def rotate(self):
         pass

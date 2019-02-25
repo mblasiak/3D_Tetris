@@ -13,4 +13,5 @@ class LBlock(Block):
         super().__init__([self.a, self.b, self.c, self.d], LeftDownState(self), center_x+1, center_y-1,game_manager)
 
     def rotate(self):
-        self.state.rotate()
+        if self.can_spin():
+            self.state.rotate()
