@@ -8,3 +8,6 @@ class GameField():
 
     def taken_by(self):
         pass
+
+    def is_taken(self):
+        pass

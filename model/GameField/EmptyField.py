@@ -11,3 +11,6 @@ class EmptyField(GameField):
 
     def taken_by(self):
         return None
+
+    def is_taken(self):
+        return False

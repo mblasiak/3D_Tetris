@@ -12,5 +12,8 @@ class TakenField(GameField):
     def taken_by(self):
         return self.box
 
+    def is_taken(self):
+        return True
+
     def __init__(self, box):
         self.box = box
