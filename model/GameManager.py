@@ -4,6 +4,7 @@ from model.Shapes.L_block.LBlock import LBlock
 from model.Shapes.O_block.OBlock import OBlock
 from model.Directions.Directions import *
 from model.BoxModelFactory import BoxModelFactory
+from model.Shapes.T_block.TBlock import TBlock
 
 
 class GameManager:
@@ -23,8 +24,9 @@ class GameManager:
         top = self.SIZE_Y - 2
         middle = round(self.SIZE_X / 2)
         if not self.mc.check(top, middle).is_movable():
-            box = LBlock(self, self.app, self.mc, middle, top)
+            #box = LBlock(self, self.app, self.mc, middle, top)
             #box = OBlock(self, self.app, self.mc, middle, top)
+            box=TBlock(self, self.app, self.mc, middle, top)
             self.current_box = box
             return True
         return False
