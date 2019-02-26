@@ -33,6 +33,22 @@ class BoxGFX:
     def move(self, direction):
         self.gfx_x = self.gfx_x + direction.x * self.box_size
         self.gfx_y = self.gfx_y + direction.y * self.box_size
+        self.refresh()
+
+    def refresh(self):
+
+        if self.is_animation_playing():
+            time = self.move_down_itv.getDuration()
+            self.move_down_itv.finish()
+            self.move_down_itv = self.box_holder.posInterval(self.game_manager.game_speed,
+                                                             Point3(self.gfx_x, self.gfx_z, self.gfx_y),
+                                                             startPos=Point3(self.gfx_x, self.gfx_z,
+                                                                             self.gfx_y + self.box_size))
+            self.move_down_itv.start()
+            self.move_down_itv.setT(time)
+
+        else:
+            self.box_holder.setPos(self.gfx_x, self.gfx_z, self.gfx_y)
 
     def remove(self):
         self.box_holder.removeNode()

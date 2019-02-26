@@ -14,7 +14,7 @@ class GameManager:
         game_space = np.zeros((self.SIZE_Y, self.SIZE_X)).tolist()
         self.mc = GameMap(game_space)
         self.app = app
-        self.game_speed = 1
+        self.game_speed = 0.3
         self.box_size = 2
         self.current_box = None
         self.model_factory = BoxModelFactory(app)
@@ -35,12 +35,11 @@ class GameManager:
         self.app.accept("space", self.current_box.rotate)
 
     def play(self, task):
-        self.handle_buttons()
         if not self.current_box.is_animation_playing():
-
             if not self.current_box.fall():
                 self.mc.remove_full_rows()
                 still_playing = self.drop_new()
                 if not still_playing:
                     return task.done
+        self.handle_buttons()
         return task.cont
