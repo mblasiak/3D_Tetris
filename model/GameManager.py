@@ -20,7 +20,7 @@ class GameManager:
         self.model_factory = BoxModelFactory(app)
 
     def drop_new(self):
-        top = self.SIZE_Y - 1
+        top = self.SIZE_Y - 2
         middle = round(self.SIZE_X / 2)
         if not self.mc.check(top, middle).is_movable():
             box = LBlock(self, self.app, self.mc, middle, top)
