@@ -49,21 +49,15 @@ class Block:
 
     def can_spin(self):
         neighbours = []
-        print("Sprwadzam")
         for x in range(self.center_x - 1, self.center_x + 2):
             for y in range(self.center_y - 1, self.center_y + 2):
                 field=self.game_manager.mc.check(y, x)
                 if field.is_out_of_rang():
-                    print("Out")
-                    print(x)
-                    print(y)
                     return False
                 if field.is_taken():
                     neighbours.append(field.taken_by())
-                    print("Somsiad")
         for box in neighbours:
             if box not in self.boxes:
-                print("Nie zawiera")
                 return False
         return True
 
