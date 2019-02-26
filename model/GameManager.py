@@ -35,11 +35,14 @@ class GameManager:
         self.app.accept("space", self.current_box.rotate)
 
     def play(self, task):
+        print("In task")
         if not self.current_box.is_animation_playing():
             if not self.current_box.fall():
                 self.mc.remove_full_rows()
                 still_playing = self.drop_new()
                 if not still_playing:
+                    print("Exit")
+                    self.app.ignoreAll()
                     return task.done
         self.handle_buttons()
         return task.cont
