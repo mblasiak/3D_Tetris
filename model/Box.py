@@ -32,5 +32,8 @@ class Box:
         self.map_controller.block(self.y, self.x, self)
         self.box_gfx.move(direction)
 
+    def refresh(self):
+        self.box_gfx.refresh()
+
     def remove(self):
         self.box_gfx.remove()

@@ -9,14 +9,16 @@ class LeftDownState(RotationState):
 
     def rotate(self):
         self.block.a.move(OneRight())
-        self.block.a.move(OneRight())
         self.block.a.move(OneDown())
 
-        self.block.b.move(OneRight())
+        self.block.b.refresh()
 
         self.block.c.move(OneUp())
+        self.block.c.move(OneLeft())
 
         self.block.d.move(OneLeft())
+        self.block.d.move(OneLeft())
+
         self.next_state()
 
 
@@ -27,17 +29,16 @@ class RightDownState(RotationState):
 
     def rotate(self):
         self.block.a.move(OneDown())
-        self.block.b.move(OneRight())
+        self.block.a.move(OneLeft())
 
-        self.block.c.move(OneRight())
+        self.block.b.refresh()
+
         self.block.c.move(OneRight())
 
         self.block.c.move(OneUp())
 
         self.block.d.move(OneUp())
         self.block.d.move(OneUp())
-
-        self.block.d.move(OneRight())
 
         self.next_state()
 
@@ -49,12 +50,13 @@ class RightUpState(RotationState):
 
     def rotate(self):
         self.block.d.move(OneRight())
+        self.block.d.move(OneRight())
+
+        self.block.b.refresh()
 
         self.block.c.move(OneDown())
+        self.block.c.move(OneRight())
 
-        self.block.b.move(OneLeft())
-
-        self.block.a.move(OneLeft())
         self.block.a.move(OneLeft())
         self.block.a.move(OneUp())
 
@@ -68,15 +70,14 @@ class LeftUpState(RotationState):
 
     def rotate(self):
         self.block.a.move(OneUp())
+        self.block.a.move(OneRight())
 
-        self.block.b.move(OneLeft())
+        self.block.b.refresh()
 
-        self.block.c.move(OneLeft())
         self.block.c.move(OneLeft())
         self.block.c.move(OneDown())
 
         self.block.d.move(OneDown())
         self.block.d.move(OneDown())
-        self.block.d.move(OneLeft())
 
         self.next_state()
