@@ -7,7 +7,7 @@ from game.Shapes.T_block.TBlock import TBlock
 from game.Shapes.Z_block.ZBlock import ZBlock
 
 
-class Switcher:
+class ShapeSwitcher:
 
     def __init__(self):
         self.switcher_dict = {
