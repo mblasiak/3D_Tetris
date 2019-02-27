@@ -4,7 +4,7 @@ from game.BoxModels.BoxModels import *
 
 class BoxGFX:
 
-    def __init__(self, game_manager, x, y, app, map_controller):
+    def __init__(self, game_manager, x, y, app, map_controller, model_type):
         self.gfx_x = x * game_manager.box_size
         self.gfx_y = y * game_manager.box_size
         self.gfx_z = 170
@@ -12,7 +12,7 @@ class BoxGFX:
         self.game_manager = game_manager
 
         self.box_holder = app.render.attachNewNode("Box Holder")
-        game_manager.model_factory.get_model(WoodenBox()).instanceTo(self.box_holder)
+        game_manager.model_factory.get_model(model_type).instanceTo(self.box_holder)
         self.box_holder.setPos(self.gfx_x, self.gfx_z, self.gfx_y)
         self.move_down_itv = self.box_holder.posInterval(self.game_manager.game_speed,
                                                          Point3(self.gfx_x, self.gfx_z, self.gfx_y - self.box_size))
