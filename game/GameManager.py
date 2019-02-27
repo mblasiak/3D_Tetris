@@ -1,6 +1,5 @@
 import numpy as np
-
-from game.BoxModels.BoxModels import WoodenBox
+from game.GameButtonHandler import GameButtonHandler
 from game.GameMap import GameMap
 from game.Shapes.I_block.IBlock import IBlock
 from game.Shapes.J_block.JBlock import JBlock
@@ -28,38 +27,27 @@ class GameManager:
         self.model_factory = BoxModelFactory(app)
         self.top = self.SIZE_Y - 2
         self.middle = round(self.SIZE_X / 2)
-
         self.shapes_factory = ShapesFactory(self, app, self.mc, self.middle, self.top)
+        self.button_handler = GameButtonHandler(app, self.current_box)
 
     def drop_new(self):
 
         if not self.mc.check(self.top, self.middle).is_movable():
-            # box = LBlock(self, self.app, self.mc, middle, top)
-            # box = OBlock(self, self.app, self.mc, middle, top)
-            # box=TBlock(self, self.app, self.mc, middle, top)
-            # box=JBlock(self, self.app, self.mc, middle, top)
-            # box=SBlock(self, self.app, self.mc, middle, top)
-            # box = ZBlock(self, self.app, self.mc, middle, top)
-            # box = IBlock(self, self.app, self.mc, middle, top,WoodenBox())
-            box = self.shapes_factory.get_random_shape()
+            box = self.shapes_factory.get_random()
             self.current_box = box
+            self.button_handler.update_box(box)
             return True
         return False
 
-    def handle_buttons(self):
-        self.app.accept("arrow_left", self.current_box.move, [OneLeft()])
-        self.app.accept("arrow_right", self.current_box.move, [OneRight()])
-        self.app.accept("space", self.current_box.rotate)
-
     def play(self, task):
-        print("In task")
         if not self.current_box.is_animation_playing():
             if not self.current_box.fall():
+                self.current_box = None
                 self.mc.remove_full_rows()
                 still_playing = self.drop_new()
                 if not still_playing:
                     print("Exit")
                     self.app.ignoreAll()
                     return task.done
-        self.handle_buttons()
+
         return task.cont
