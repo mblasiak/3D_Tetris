@@ -1,6 +1,6 @@
-from model.Box import Box
-from model.Shapes.Block import Block
-from model.Shapes.S_block.States import DownState
+from game.Box import Box
+from game.Shapes.Block import Block
+from game.Shapes.S_block.States import DownState
 
 
 class SBlock(Block):

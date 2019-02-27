@@ -1,4 +1,4 @@
-from model.Directions.Directions import *
+from game.Directions.Directions import *
 
 
 class Block:

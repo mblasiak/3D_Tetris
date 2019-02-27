@@ -1,7 +1,7 @@
 from direct.showbase.ShowBase import ShowBase, ClockObject
 from direct.showbase.ShowBaseGlobal import globalClock
 
-from model.GameManager import GameManager
+from game.GameManager import GameManager
 from panda3d.core import loadPrcFileData
 
 

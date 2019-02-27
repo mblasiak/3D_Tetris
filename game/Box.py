@@ -1,6 +1,6 @@
 from panda3d.core import Point3
 
-from model.BoxGFX import BoxGFX
+from game.BoxGFX import BoxGFX
 
 
 class Box:

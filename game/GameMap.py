@@ -1,6 +1,6 @@
-from model.GameField.EmptyField import EmptyField
-from model.GameField.OutField import OutField
-from model.GameField.TakenField import TakenField
+from game.GameField.EmptyField import EmptyField
+from game.GameField.OutField import OutField
+from game.GameField.TakenField import TakenField
 
 
 class GameMap:

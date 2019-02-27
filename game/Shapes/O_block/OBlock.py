@@ -1,6 +1,6 @@
-from model.Box import Box
-from model.Shapes.Block import Block
-from model.Shapes.RotationState import RotationState
+from game.Box import Box
+from game.Shapes.Block import Block
+from game.Shapes.RotationState import RotationState
 
 
 class OBlock(Block):

@@ -1,13 +1,13 @@
-from model.GameField.Field import GameField
+from game.GameField.Field import GameField
 
 
-class OutField(GameField):
+class EmptyField(GameField):
 
     def is_movable(self):
-        return True
+        return False
 
     def is_out_of_rang(self):
-        return True
+        return False
 
     def taken_by(self):
         return None

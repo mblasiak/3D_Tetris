@@ -1,5 +1,5 @@
-from model.Directions.Directions import *
-from model.Shapes.RotationState import RotationState
+from game.Directions.Directions import *
+from game.Shapes.RotationState import RotationState
 
 
 class DownState(RotationState):

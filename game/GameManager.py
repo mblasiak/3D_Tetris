@@ -1,14 +1,14 @@
 import numpy as np
-from model.GameMap import GameMap
-from model.Shapes.I_block.IBlock import IBlock
-from model.Shapes.J_block.JBlock import JBlock
-from model.Shapes.L_block.LBlock import LBlock
-from model.Shapes.O_block.OBlock import OBlock
-from model.Directions.Directions import *
-from model.BoxModelFactory import BoxModelFactory
-from model.Shapes.S_block.SBlock import SBlock
-from model.Shapes.T_block.TBlock import TBlock
-from model.Shapes.Z_block.ZBlock import ZBlock
+from game.GameMap import GameMap
+from game.Shapes.I_block.IBlock import IBlock
+from game.Shapes.J_block.JBlock import JBlock
+from game.Shapes.L_block.LBlock import LBlock
+from game.Shapes.O_block.OBlock import OBlock
+from game.Directions.Directions import *
+from game.BoxModelFactory import BoxModelFactory
+from game.Shapes.S_block.SBlock import SBlock
+from game.Shapes.T_block.TBlock import TBlock
+from game.Shapes.Z_block.ZBlock import ZBlock
 
 
 class GameManager:
@@ -46,14 +46,14 @@ class GameManager:
         self.app.accept("space", self.current_box.rotate)
 
     def play(self, task):
-        # print("In task")
-        # if not self.current_box.is_animation_playing():
-        #     if not self.current_box.fall():
-        #         self.mc.remove_full_rows()
-        #         still_playing = self.drop_new()
-        #         if not still_playing:
-        #             print("Exit")
-        #             self.app.ignoreAll()
-        #             return task.done
+        print("In task")
+        if not self.current_box.is_animation_playing():
+            if not self.current_box.fall():
+                self.mc.remove_full_rows()
+                still_playing = self.drop_new()
+                if not still_playing:
+                    print("Exit")
+                    self.app.ignoreAll()
+                    return task.done
         self.handle_buttons()
         return task.cont
