@@ -8,6 +8,6 @@ class BoxModelFactory:
         if model_type.name in self.loaded_models.keys():
             return self.loaded_models[model_type.name]
         else:
-            box_model = self.app.loader.loadModel("resources/PS2.egg")
+            box_model = self.app.loader.loadModel(model_type.model_path)
             self.loaded_models[model_type.name] = box_model
             return box_model
