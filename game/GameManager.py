@@ -1,15 +1,7 @@
 import numpy as np
 from game.GameButtonHandler import GameButtonHandler
 from game.GameMap import GameMap
-from game.Shapes.I_block.IBlock import IBlock
-from game.Shapes.J_block.JBlock import JBlock
-from game.Shapes.L_block.LBlock import LBlock
-from game.Shapes.O_block.OBlock import OBlock
-from game.Directions.Directions import *
 from game.BoxModelFactory import BoxModelFactory
-from game.Shapes.S_block.SBlock import SBlock
-from game.Shapes.T_block.TBlock import TBlock
-from game.Shapes.Z_block.ZBlock import ZBlock
 from game.ShapesFactory import ShapesFactory
 
 

@@ -15,7 +15,7 @@ class ShapesFactory:
         self.shape_switcher = ShapeSwitcher()
         self.model_switcher = ModelSwitcher()
 
-    def get_random_shape(self):
+    def get_random(self):
         rand = randrange(1, 8, 1)
         shape = self.shape_switcher.number_to_shape(rand)
         model=self.model_switcher.number_to_model(rand)
