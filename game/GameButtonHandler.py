@@ -15,7 +15,6 @@ class GameButtonHandler:
         self.current_box = box
 
     def move_box(self, direction):
-        print("HOOHO")
         if self.current_box is not None:
             self.current_box.move(direction)
 

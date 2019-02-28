@@ -5,7 +5,6 @@ from game.GameManager import GameManager
 from panda3d.core import loadPrcFileData
 
 
-
 class MyApp(ShowBase):
     def __init__(self):
         ShowBase.__init__(self)
@@ -15,11 +14,11 @@ class MyApp(ShowBase):
         globalClock.setMode(ClockObject.MLimited)
         globalClock.setFrameRate(120)
 
-        #self.render.analyze()
+        # self.render.analyze()
+
 
 loadPrcFileData('', 'win-size 600 600')
-#loadPrcFileData('', 'want-pstats 1')
-
+# loadPrcFileData('', 'want-pstats 1')
 
 
 app = MyApp()

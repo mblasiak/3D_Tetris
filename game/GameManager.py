@@ -38,7 +38,6 @@ class GameManager:
                 self.mc.remove_full_rows()
                 still_playing = self.drop_new()
                 if not still_playing:
-                    print("Exit")
                     self.app.ignoreAll()
                     return task.done
 
