@@ -17,7 +17,7 @@ class MyApp(ShowBase):
         # self.render.analyze()
 
 
-loadPrcFileData('', 'win-size 600 600')
+loadPrcFileData('', 'win-size 800 800')
 # loadPrcFileData('', 'want-pstats 1')
 
 
