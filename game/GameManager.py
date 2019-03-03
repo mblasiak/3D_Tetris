@@ -1,11 +1,13 @@
 import numpy as np
-from panda3d.core import DirectionalLight, Fog, AntialiasAttrib, Point3
+from panda3d.core import AntialiasAttrib, Point3
+from panda3d.fx import FisheyeLens
 
 from game.GameBound import GameBound
 from game.GameButtonHandler import GameButtonHandler
 from game.GameMap import GameMap
 from game.BoxModelFactory import BoxModelFactory
-from game.Shapes.ScoreDisplay import ScoreDisplay
+from game.MainCamera import MainCamera
+from game.ScoreDisplay import ScoreDisplay
 from game.ShapesFactory import ShapesFactory
 
 
@@ -28,19 +30,22 @@ class GameManager:
         self.button_handler = GameButtonHandler(app, self.current_box)
         self.score = 0
         self.score_display = ScoreDisplay(app)
+        self.cam=MainCamera("Mian",FisheyeLens())
+        self.cam.setScene(app.render)
         app.render.setAntialias(AntialiasAttrib.MAuto)
         app.disableMouse()
 
-        self.app.camera.setPos(-20, 10, 30)
-        self.move_down_itv = self.app.camera.posInterval(self.game_speed*self.SIZE_Y/2, Point3(-20,50 ,-20 ))
+        self.app.camera.setPos(-20, -50, -20)
+        self.move_down_itv = self.app.camera.posInterval(self.game_speed*self.SIZE_Y/2, Point3(-20,70 ,30 ))
         self.move_down_itv.start()
         self.bounds = GameBound(app, self)
         self.wait_counter = 0
         self.wait_count=100
 
     def drop_new(self):
-        self.move_down_itv = self.app.camera.posInterval(self.game_speed * self.SIZE_Y / 1.5, Point3(-20, 60, 45))
-        self.move_down_itv.start()
+        # self.app.camera.setPos(-20, 10, 30)
+        # self.move_down_itv = self.app.camera.posInterval(self.game_speed * self.SIZE_Y / 2, Point3(-20, 50, -20))
+        # self.move_down_itv.start()
         if not self.mc.check(self.top, self.middle).is_movable():
             box = self.shapes_factory.get_random()
             self.current_box = box
@@ -66,11 +71,5 @@ class GameManager:
                         self.button_handler.stop()
                         return task.done
                 else:
-                    if self.wait_count==0:
-                        self.wait_counter += 1
-                        self.move_down_itv = self.app.camera.posInterval(self.game_speed * self.SIZE_Y / 2,
-                                                                         Point3(-20, 10, 30))
-                        self.move_down_itv.start()
-                    else:
-                        self.wait_counter+=1
+                    self.wait_counter+=1
         return task.cont
