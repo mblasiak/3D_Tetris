@@ -1,5 +1,7 @@
 import numpy as np
+from panda3d.core import DirectionalLight, Fog
 
+from game.GameBound import GameBound
 from game.GameButtonHandler import GameButtonHandler
 from game.GameMap import GameMap
 from game.BoxModelFactory import BoxModelFactory
@@ -42,9 +44,9 @@ class GameManager:
                 self.current_box = None
                 self.mc.remove_full_rows()
                 still_playing = self.drop_new()
-                self.score+=1
+                self.score += 1
                 self.score_display.update(self.score)
                 if not still_playing:
-                    self.app.ignoreAll()
+                    self.button_handler.stop()
                     return task.done
         return task.cont
