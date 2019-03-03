@@ -1,6 +1,6 @@
 from random import randrange
 
-from game.BoxModels.BoxModels import WoodenBox, ModelSwitcher
+from game.BoxModels.BoxModels import ModelSwitcher
 from game.Shapes.ShapeSwitcher import ShapeSwitcher
 
 
