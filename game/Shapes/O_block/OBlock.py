@@ -1,4 +1,4 @@
-from game.Box import Box
+from game.Box.Box import Box
 from game.Shapes.Block import Block
 from game.Shapes.RotationState import RotationState
 

@@ -2,13 +2,13 @@ import numpy as np
 from panda3d.core import AntialiasAttrib, Point3
 from panda3d.fx import FisheyeLens
 
-from game.GameBound import GameBound
+from game.PlayBounds.GameBound import GameBound
 from game.GameButtonHandler import GameButtonHandler
 from game.GameMap import GameMap
-from game.BoxModelFactory import BoxModelFactory
+from game.BoxModels.BoxModelFactory import BoxModelFactory
 from game.MainCamera import MainCamera
-from game.ScoreDisplay import ScoreDisplay
-from game.ShapesFactory import ShapesFactory
+from game.ScoreDisplayer.ScoreDisplay import ScoreDisplay
+from game.Shapes.ShapesFactory import ShapesFactory
 
 
 class GameManager:

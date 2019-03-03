@@ -1,5 +1,5 @@
 from game.Directions.Directions import *
-from game.NullGfxBox import NullGfxBox
+from game.BoxGfx.NullGfxBox import NullGfxBox
 
 
 class Block:
