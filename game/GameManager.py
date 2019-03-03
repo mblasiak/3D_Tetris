@@ -1,5 +1,5 @@
 import numpy as np
-from panda3d.core import DirectionalLight, Fog, AntialiasAttrib
+from panda3d.core import DirectionalLight, Fog, AntialiasAttrib, Point3
 
 from game.GameBound import GameBound
 from game.GameButtonHandler import GameButtonHandler
@@ -30,42 +30,47 @@ class GameManager:
         self.score_display = ScoreDisplay(app)
         app.render.setAntialias(AntialiasAttrib.MAuto)
         app.disableMouse()
-        self.app.camera.setPos(0, 40, 10)
-        # self.app.camera.setHpr(0, -20,0)
-        # # myFog = Fog("Fog")
-        # #myFog.setColor(1, 1, 1)
-        # myFog.setExpDensity(0.001)
-        # app.render.setFog(myFog)
 
-        # dlight = DirectionalLight('my dlight')
-        # dlnp = app.render.attachNewNode(dlight)
-        # app.render.setLight(dlnp)
-        # dlnp.setPos(300,300,0)
+        self.app.camera.setPos(-20, 10, 30)
+        self.move_down_itv = self.app.camera.posInterval(self.game_speed*self.SIZE_Y/2, Point3(-20,50 ,-20 ))
+        self.move_down_itv.start()
         self.bounds = GameBound(app, self)
+        self.wait_counter = 0
+        self.wait_count=100
 
     def drop_new(self):
-
+        self.move_down_itv = self.app.camera.posInterval(self.game_speed * self.SIZE_Y / 1.5, Point3(-20, 60, 45))
+        self.move_down_itv.start()
         if not self.mc.check(self.top, self.middle).is_movable():
             box = self.shapes_factory.get_random()
             self.current_box = box
-            self.app.camera.lookAt(self.current_box.boxes[1].box_gfx.box_holder)
 
             self.button_handler.update_box(box)
             return True
         return False
 
     def play(self, task):
-        #self.app.camera.lookAt(self.current_box.boxes[1].box_gfx.box_holder)
+        # self.app.camera.lookAt(self.current_box.boxes[1].box_gfx.box_holder)
         self.app.camera.lookAt(self.current_box.get_look_at())
 
         if not self.current_box.is_animation_playing():
             if not self.current_box.fall():
-                self.current_box = None
-                self.mc.remove_full_rows()
-                still_playing = self.drop_new()
-                self.score += 1
-                self.score_display.update(self.score)
-                if not still_playing:
-                    self.button_handler.stop()
-                    return task.done
+                if self.wait_counter>self.wait_count:
+                    self.wait_counter=0
+                    self.current_box = None
+                    self.mc.remove_full_rows()
+                    still_playing = self.drop_new()
+                    self.score += 1
+                    self.score_display.update(self.score)
+                    if not still_playing:
+                        self.button_handler.stop()
+                        return task.done
+                else:
+                    if self.wait_count==0:
+                        self.wait_counter += 1
+                        self.move_down_itv = self.app.camera.posInterval(self.game_speed * self.SIZE_Y / 2,
+                                                                         Point3(-20, 10, 30))
+                        self.move_down_itv.start()
+                    else:
+                        self.wait_counter+=1
         return task.cont
