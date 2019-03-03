@@ -1,5 +1,5 @@
 import numpy as np
-from panda3d.core import DirectionalLight, Fog
+from panda3d.core import DirectionalLight, Fog, AntialiasAttrib
 
 from game.GameBound import GameBound
 from game.GameButtonHandler import GameButtonHandler
@@ -28,17 +28,35 @@ class GameManager:
         self.button_handler = GameButtonHandler(app, self.current_box)
         self.score = 0
         self.score_display = ScoreDisplay(app)
+        app.render.setAntialias(AntialiasAttrib.MAuto)
+        app.disableMouse()
+        self.app.camera.setPos(-20,30,-70)
+        # self.app.camera.setHpr(0, -20,0)
+        # # myFog = Fog("Fog")
+        # #myFog.setColor(1, 1, 1)
+        # myFog.setExpDensity(0.001)
+        # app.render.setFog(myFog)
+
+        # dlight = DirectionalLight('my dlight')
+        # dlnp = app.render.attachNewNode(dlight)
+        # app.render.setLight(dlnp)
+        # dlnp.setPos(300,300,0)
+        self.bounds = GameBound(app,self)
 
     def drop_new(self):
 
         if not self.mc.check(self.top, self.middle).is_movable():
+
             box = self.shapes_factory.get_random()
             self.current_box = box
+            self.app.camera.lookAt(self.current_box.boxes[1].box_gfx.box_holder)
+
             self.button_handler.update_box(box)
             return True
         return False
 
     def play(self, task):
+        self.app.camera.lookAt(self.current_box.boxes[1].box_gfx.box_holder)
         if not self.current_box.is_animation_playing():
             if not self.current_box.fall():
                 self.current_box = None

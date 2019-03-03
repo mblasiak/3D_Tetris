@@ -5,7 +5,7 @@ from game.BoxModels.BoxModels import *
 class BoxGFX:
 
     def __init__(self, game_manager, x, y, app, map_controller, model_type):
-        self.gfx_x = x * game_manager.box_size
+        self.gfx_x = x * game_manager.box_size-30
         self.gfx_y = y * game_manager.box_size-20
         self.gfx_z = 100
         self.box_size = game_manager.box_size
