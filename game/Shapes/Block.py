@@ -1,4 +1,5 @@
 from game.Directions.Directions import *
+from game.NullGfxBox import NullGfxBox
 
 
 class Block:
@@ -9,12 +10,14 @@ class Block:
         self.center_x = center_x
         self.state = initial_state
         self.boxes = boxes_list
+        self.look_at=NullGfxBox(game_manager, center_x, center_y)
 
     def fall(self):
         if self.can_move(OneDown()):
             for box in self.boxes:
                 box.fall()
             self.center_y = self.center_y - 1
+            self.look_at.start_falling_animation()
             return True
         return False
 
@@ -47,11 +50,14 @@ class Block:
     def set_state(self, new_state):
         self.state = new_state
 
+    def get_look_at(self):
+        return self.look_at.box_holder
+
     def can_spin(self):
         neighbours = []
         for x in range(self.center_x - 1, self.center_x + 2):
             for y in range(self.center_y - 1, self.center_y + 2):
-                field=self.game_manager.mc.check(y, x)
+                field = self.game_manager.mc.check(y, x)
                 if field.is_out_of_rang():
                     return False
                 if field.is_taken():

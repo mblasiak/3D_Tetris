@@ -18,7 +18,7 @@ class GameManager:
         game_space = np.zeros((self.SIZE_Y, self.SIZE_X)).tolist()
         self.mc = GameMap(game_space)
         self.app = app
-        self.game_speed = 0.3
+        self.game_speed = 0.6
         self.box_size = 2
         self.current_box = None
         self.model_factory = BoxModelFactory(app)
@@ -30,7 +30,7 @@ class GameManager:
         self.score_display = ScoreDisplay(app)
         app.render.setAntialias(AntialiasAttrib.MAuto)
         app.disableMouse()
-        self.app.camera.setPos(-20,30,-70)
+        self.app.camera.setPos(0, 40, 10)
         # self.app.camera.setHpr(0, -20,0)
         # # myFog = Fog("Fog")
         # #myFog.setColor(1, 1, 1)
@@ -41,12 +41,11 @@ class GameManager:
         # dlnp = app.render.attachNewNode(dlight)
         # app.render.setLight(dlnp)
         # dlnp.setPos(300,300,0)
-        self.bounds = GameBound(app,self)
+        self.bounds = GameBound(app, self)
 
     def drop_new(self):
 
         if not self.mc.check(self.top, self.middle).is_movable():
-
             box = self.shapes_factory.get_random()
             self.current_box = box
             self.app.camera.lookAt(self.current_box.boxes[1].box_gfx.box_holder)
@@ -56,7 +55,9 @@ class GameManager:
         return False
 
     def play(self, task):
-        self.app.camera.lookAt(self.current_box.boxes[1].box_gfx.box_holder)
+        #self.app.camera.lookAt(self.current_box.boxes[1].box_gfx.box_holder)
+        self.app.camera.lookAt(self.current_box.get_look_at())
+
         if not self.current_box.is_animation_playing():
             if not self.current_box.fall():
                 self.current_box = None
