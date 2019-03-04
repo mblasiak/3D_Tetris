@@ -21,5 +21,5 @@ class Config:
 
         class Gfx:
             box_size = 2
-            offset=(-30,-20,100)
+            offset=(0,-20,100)
 

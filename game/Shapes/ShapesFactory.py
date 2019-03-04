@@ -6,12 +6,11 @@ from game.Shapes.ShapeSwitcher import ShapeSwitcher
 
 class ShapesFactory:
 
-    def __init__(self, game_manager, app, map_controller, spawn_x, spawn_y, box_factory, box_size):
+    def __init__(self, app, map_controller, spawn_x, spawn_y, box_factory, box_size):
         self.app = app
         self.map_controller = map_controller
         self.center_y = spawn_y
         self.center_x = spawn_x
-        self.game_manager = game_manager
         self.shape_switcher = ShapeSwitcher()
         self.model_switcher = ModelSwitcher()
         self.box_factory = box_factory

@@ -9,6 +9,6 @@ class BoxGfxFactory:
         self.offsets = offsets
         self.game_speed = gamespeed
 
-    def get_gfx_box(self, model_type,x,y):
+    def get_gfx_box(self, model_type, x, y):
         return BoxGFX(x, y, self.app, model_type, self.model_factory, self.box_size, self.offsets,
                       self.game_speed)

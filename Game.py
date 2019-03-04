@@ -5,7 +5,7 @@ from game.GameManager import GameManager
 from panda3d.core import loadPrcFileData
 
 
-class MyApp(ShowBase):
+class Game(ShowBase):
     def __init__(self):
         ShowBase.__init__(self)
         self.gM = GameManager(self)
@@ -24,8 +24,3 @@ class MyApp(ShowBase):
         # self.render.analyze()
 
 
-loadPrcFileData('', 'win-size 800 800')
-# loadPrcFileData('', 'want-pstats 1')
-app = MyApp()
-app.setFrameRateMeter(True)
-app.run()

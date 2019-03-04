@@ -7,8 +7,8 @@ from game.GameField.TakenField import TakenField
 
 
 class GameMap:
-    def __init__(self):
-        game_space = np.zeros((Config.GamePlay.GameMap.Y, Config.GamePlay.GameMap.Y)).tolist()
+    def __init__(self,x,y):
+        game_space = np.zeros((y, x)).tolist()
         self.blocks_map = game_space
 
     def check(self, y, x):
