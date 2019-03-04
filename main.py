@@ -1,9 +1,11 @@
-
-from direct.showbase.ShowBase import ShowBase, ClockObject, Camera, NodePath
+from direct.showbase.ShowBase import ShowBase, ClockObject, AntialiasAttrib
 from direct.showbase.ShowBaseGlobal import globalClock
 
 from game.GameManager import GameManager
 from panda3d.core import loadPrcFileData
+
+from game.GamePlayCamera import GamePlayCamera
+from game.UpcomingBlockDisplay import UpcomingBlockDisplay
 
 
 class MyApp(ShowBase):
@@ -14,19 +16,13 @@ class MyApp(ShowBase):
         self.taskMgr.add(self.gM.play, "MovAll")
         globalClock.setMode(ClockObject.MLimited)
         globalClock.setFrameRate(120)
-
-        displayRegion = self.win.makeDisplayRegion(0, 1, 0.8, 1)
-        displayRegion.setSort(20)
-        camNode = Camera('cam')
-
-        camNP = NodePath(camNode)
-        render2 = NodePath('render2')
-        env = self.loader.loadModel('environment.egg')
-        env.reparentTo(render2)
-        camNP.reparentTo(render2)
-        displayRegion.setCamera(camNP)
-
-        # self.render.analyze()
+        self.render.setAntialias(AntialiasAttrib.MAuto)
+        self.disableMouse()
+        p=UpcomingBlockDisplay(self)
+        z=GamePlayCamera(p.displayRegion,self.render,None)
+        z.reset()
+        # z.move_with_interval()
+        #self.render.analyze()
 
 
 loadPrcFileData('', 'win-size 800 800')
