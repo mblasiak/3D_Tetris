@@ -1,13 +1,13 @@
 from panda3d.core import NodePath, Camera
 
-from game.GameConfig import GameConfig
+from game.Config import Config
 
 
 class UpcomingBlockDisplay:
 
     def __init__(self, app):
-        self.displayRegion = app.win.makeDisplayRegion(GameConfig.upcoming_block_region)
-        self.displayRegion.setSort(GameConfig.upcoming_block_region_sort)
+        self.displayRegion = app.win.makeDisplayRegion(Config.NextBlockRegion.cords)
+        self.displayRegion.setSort(Config.NextBlockRegion.sort)
         self.renderer = NodePath('UpcomingBlockRender')
 
     def setCamera(self, cam):

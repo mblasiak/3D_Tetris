@@ -4,9 +4,6 @@ from direct.showbase.ShowBaseGlobal import globalClock
 from game.GameManager import GameManager
 from panda3d.core import loadPrcFileData
 
-from game.GamePlayCamera import GamePlayCamera
-from game.UpcomingBlockDisplay import UpcomingBlockDisplay
-
 
 class MyApp(ShowBase):
     def __init__(self):

@@ -1,15 +1,13 @@
-from game.BoxGfx.BoxGFX import BoxGFX
 
 
 class Box:
 
-    def __init__(self, game_manager, x, y, app, map_controller,model_type):
-        self.game_manager = game_manager
+    def __init__(self, x, y, map_controller, model_type, box_gfx_factory):
         self.x = x
         self.y = y
         self.map_controller = map_controller
         self.map_controller.block(self.y, self.x, self)
-        self.box_gfx = BoxGFX(game_manager, x, y, app, map_controller,model_type)
+        self.box_gfx = box_gfx_factory.get_gfx_box(model_type,self.x,self.y)
 
     def fall(self):
         self.map_controller.release(self.y, self.x, self)

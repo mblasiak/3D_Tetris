@@ -3,16 +3,16 @@ from panda3d.core import Point3
 
 class NullGfxBox:
 
-    def __init__(self, game_manager, x, y):
-        self.gfx_x = x * game_manager.box_size - 30
-        self.gfx_y = y * game_manager.box_size - 20
+    def __init__(self, x, y,box_size,app,game_speed):
+        self.gfx_x = x * box_size - 30
+        self.gfx_y = y * box_size - 20
         self.gfx_z = 100
-        self.box_size = game_manager.box_size
-        self.game_manager = game_manager
-        self.app = game_manager.app
+        self.box_size = box_size
+        self.game_speed=game_speed
+        self.app = app
         self.box_holder = self.app.render.attachNewNode("Box Holder")
         self.box_holder.setPos(self.gfx_x, self.gfx_z, self.gfx_y)
-        self.move_down_itv = self.box_holder.posInterval(self.game_manager.game_speed,
+        self.move_down_itv = self.box_holder.posInterval(self.game_speed,
                                                          Point3(self.gfx_x, self.gfx_z, self.gfx_y - self.box_size),
                                                          startPos=Point3(self.gfx_x, self.gfx_z, self.gfx_y))
 
@@ -23,7 +23,7 @@ class NullGfxBox:
 
     def start_falling_animation(self):
         self.box_holder.setPos(self.gfx_x, self.gfx_z, self.gfx_y)
-        self.move_down_itv = self.box_holder.posInterval(self.game_manager.game_speed,
+        self.move_down_itv = self.box_holder.posInterval(self.game_speed,
                                                          Point3(self.gfx_x, self.gfx_z, self.gfx_y - self.box_size),
                                                          startPos=Point3(self.gfx_x, self.gfx_z, self.gfx_y))
         self.move_down_itv.start()

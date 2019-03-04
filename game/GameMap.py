@@ -1,11 +1,15 @@
+import numpy as np
+
+from game.Config import Config
 from game.GameField.EmptyField import EmptyField
 from game.GameField.OutField import OutField
 from game.GameField.TakenField import TakenField
 
 
 class GameMap:
-    def __init__(self, block_map):
-        self.blocks_map = block_map
+    def __init__(self):
+        game_space = np.zeros((Config.GamePlay.GameMap.Y, Config.GamePlay.GameMap.Y)).tolist()
+        self.blocks_map = game_space
 
     def check(self, y, x):
         if y >= len(self.blocks_map[:][:]) or y < 0 or x >= len(self.blocks_map[1]) or x < 0:

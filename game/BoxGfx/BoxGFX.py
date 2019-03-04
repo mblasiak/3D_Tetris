@@ -4,24 +4,22 @@ from game.BoxModels.BoxModels import *
 
 class BoxGFX:
 
-    def __init__(self, game_manager, x, y, app, map_controller, model_type):
-        self.gfx_x = x * game_manager.box_size-30
-        self.gfx_y = y * game_manager.box_size-20
-        self.gfx_z = 100
-        self.box_size = game_manager.box_size
-        self.game_manager = game_manager
-
+    def __init__(self, x, y, app, model_type, model_factory, box_size, gfx_offsets, game_speed):
+        (x_offset, y_offset, z_offset) = gfx_offsets
+        self.gfx_x = x * box_size + x_offset
+        self.gfx_y = y * box_size + y_offset
+        self.gfx_z = z_offset
+        self.box_size = box_size
+        self.game_speed = game_speed
         self.box_holder = app.render.attachNewNode("Box Holder")
-        game_manager.model_factory.get_model(model_type).instanceTo(self.box_holder)
+        model_factory.get_model(model_type).instanceTo(self.box_holder)
         self.box_holder.setPos(self.gfx_x, self.gfx_z, self.gfx_y)
-        self.move_down_itv = self.box_holder.posInterval(self.game_manager.game_speed,
+        self.move_down_itv = self.box_holder.posInterval(self.game_speed,
                                                          Point3(self.gfx_x, self.gfx_z, self.gfx_y - self.box_size))
-
-        self.m_c = map_controller
 
     def start_falling_animation(self):
         self.box_holder.setPos(self.gfx_x, self.gfx_z, self.gfx_y)
-        self.move_down_itv = self.box_holder.posInterval(self.game_manager.game_speed,
+        self.move_down_itv = self.box_holder.posInterval(self.game_speed,
                                                          Point3(self.gfx_x, self.gfx_z, self.gfx_y - self.box_size),
                                                          startPos=Point3(self.gfx_x, self.gfx_z, self.gfx_y))
         self.move_down_itv.start()
@@ -40,7 +38,7 @@ class BoxGFX:
         if self.is_animation_playing():
             time = self.move_down_itv.getDuration()
             self.move_down_itv.finish()
-            self.move_down_itv = self.box_holder.posInterval(self.game_manager.game_speed,
+            self.move_down_itv = self.box_holder.posInterval(self.game_speed,
                                                              Point3(self.gfx_x, self.gfx_z, self.gfx_y),
                                                              startPos=Point3(self.gfx_x, self.gfx_z,
                                                                              self.gfx_y + self.box_size))

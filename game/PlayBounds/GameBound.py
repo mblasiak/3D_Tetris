@@ -1,8 +1,11 @@
+from game import Config
+
+
 class GameBound:
-    def __init__(self, app, game_manager):
+    def __init__(self, app, game_manager,config):
         self.model = app.loader.loadModel("resources/models/cargoBox.egg")
         self.gfx_z = 100
-        self.box_size = game_manager.box_size
+        self.box_size = config.box_size
         self.game_manager = game_manager
         X = game_manager.SIZE_X
         Y = game_manager.SIZE_Y
