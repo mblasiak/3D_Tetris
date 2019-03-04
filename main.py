@@ -12,23 +12,23 @@ class MyApp(ShowBase):
     def __init__(self):
         ShowBase.__init__(self)
         self.gM = GameManager(self)
+        self.set_up_environment()
+        self.set_up_gameplay()
+
+    def set_up_gameplay(self):
         self.gM.drop_new()
         self.taskMgr.add(self.gM.play, "MovAll")
+
+    def set_up_environment(self):
         globalClock.setMode(ClockObject.MLimited)
         globalClock.setFrameRate(120)
         self.render.setAntialias(AntialiasAttrib.MAuto)
         self.disableMouse()
-        p=UpcomingBlockDisplay(self)
-        z=GamePlayCamera(p.displayRegion,self.render,None)
-        z.reset()
-        # z.move_with_interval()
-        #self.render.analyze()
+        # self.render.analyze()
 
 
 loadPrcFileData('', 'win-size 800 800')
 # loadPrcFileData('', 'want-pstats 1')
-
-
 app = MyApp()
 app.setFrameRateMeter(True)
 app.run()
