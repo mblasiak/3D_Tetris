@@ -1,10 +1,7 @@
-from game.BoxGfx.BoxGfxFactory import BoxGfxFactory
 from game.Config import Config
 from game.PlayBounds.GameBound import GameBound
 from game.GameButtonHandler import GameButtonHandler
-from game.GameMap import GameMap
-from game.BoxModels.BoxModelFactory import BoxModelFactory
-from game.Shapes.ShapesFactory import ShapesFactory
+
 
 gp = Config.GamePlay
 gpm = Config.GamePlay.GameMap

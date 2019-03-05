@@ -1,6 +1,5 @@
 import numpy as np
 
-from game.Config import Config
 from game.GameField.EmptyField import EmptyField
 from game.GameField.OutField import OutField
 from game.GameField.TakenField import TakenField
