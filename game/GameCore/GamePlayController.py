@@ -4,7 +4,6 @@ from game.PlayBounds.GameBound import GameBound
 from game.GameButtonHandler import GameButtonHandler
 from game.GameMap import GameMap
 from game.BoxModels.BoxModelFactory import BoxModelFactory
-from game.ScoreDisplayer.ScoreDisplay import ScoreDisplay
 from game.Shapes.ShapesFactory import ShapesFactory
 
 gp = Config.GamePlay
@@ -12,20 +11,13 @@ gpm = Config.GamePlay.GameMap
 gpfx = Config.GamePlay.Gfx
 
 
-class GameManager:
-
-    def __init__(self, app):
-
-        self.mc = GameMap(gpm.X, gpm.Y)
+class GamePlayController:
+    def __init__(self, app, score, shapes_factory, map_controller):
         self.current_box = None
-        self.model_factory = BoxModelFactory(app)
-        self.gfx_box_factory = BoxGfxFactory(app, self.model_factory, gpfx.box_size,
-                                             gpfx.offset, gp.game_speed)
-        self.shapes_factory = ShapesFactory(app, self.mc, gp.GameMap.spawn_x,
-                                            gpm.spawn_y, self.gfx_box_factory,
-                                            gpfx.box_size)
+        self.mc = map_controller
+        self.shapes_factory = shapes_factory
         self.button_handler = GameButtonHandler(app, self.current_box)
-        self.score_display = ScoreDisplay(app)
+        self.score_display = score
         self.bounds = GameBound(app, gpm.X, gpm.Y, gpfx.box_size, gp.Gfx.offset)
         self.wait_counter = 0
 
@@ -49,7 +41,7 @@ class GameManager:
                     self.current_box = None
                     self.mc.remove_full_rows()
                     still_playing = self.drop_new()
-                    self.score_display.add_point()
+                    self.score_display.inc()
                     if not still_playing:
                         self.button_handler.stop()
                         return task.done

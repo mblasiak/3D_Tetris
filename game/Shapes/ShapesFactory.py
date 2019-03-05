@@ -6,15 +6,13 @@ from game.Shapes.ShapeSwitcher import ShapeSwitcher
 
 class ShapesFactory:
 
-    def __init__(self, app, map_controller, spawn_x, spawn_y, box_factory, box_size):
+    def __init__(self, app, map_controller,spawn_pos, box_factory):
         self.app = app
         self.map_controller = map_controller
-        self.center_y = spawn_y
-        self.center_x = spawn_x
+        (self.center_x,self.center_y) = spawn_pos
         self.shape_switcher = ShapeSwitcher()
         self.model_switcher = ModelSwitcher()
         self.box_factory = box_factory
-        self.box_size = box_size
 
     def get_random(self):
         rand = randrange(1, 8, 1)

@@ -1,6 +1,6 @@
 from direct.gui.OnscreenText import OnscreenText
 
-from game.ScoreObserver import ScoreObserver
+from game.Score.ScoreObserver import ScoreObserver
 
 
 class ScoreDisplay(ScoreObserver):

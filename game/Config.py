@@ -18,6 +18,7 @@ class Config:
             Y = 20
             spawn_y = Y - 2
             spawn_x = round(X / 2)
+            spawn_pos=(spawn_x,spawn_y)
 
         class Gfx:
             box_size = 2
