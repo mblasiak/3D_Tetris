@@ -45,3 +45,13 @@ class GameMap:
                     for j in self.blocks_map[p]:
                         if j != 0:
                             j.fall()
+
+    def clear(self):
+        for y in range(len(self.blocks_map)):
+            for x in range(len(self.blocks_map[y])):
+                if self.blocks_map[y][x] != 0:
+                    self.blocks_map[y][x].remove()
+                    self.blocks_map[y][x] = 0
+
+    def __del__(self):
+        self.clear()
