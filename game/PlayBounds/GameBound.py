@@ -1,5 +1,9 @@
-class GameBound:
+from game.StartClear import StartClear
+
+
+class GameBound(StartClear):
     def __init__(self, app, x, y, box_size, offsets):
+        StartClear.__init__(self)
         self.model = app.loader.loadModel("resources/models/cargoBox.egg")
         self.box_size = box_size
         self.X = x
@@ -8,9 +12,8 @@ class GameBound:
         self.y_offset -= box_size
         self.all_holders = []
         self.app = app
-        self.set_up()
 
-    def set_up(self):
+    def start(self):
         for x in range(0, self.X):
             box_holder = self.app.render.attachNewNode("Box Holder")
             self.all_holders.append(box_holder)

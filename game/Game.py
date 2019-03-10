@@ -6,14 +6,11 @@ from game.MainGame import MainGame
 class Game(ShowBase):
     def __init__(self):
         ShowBase.__init__(self)
-        self.set_up_environment()
-        self.start_gameplay()
+        self.set_up()
 
-    def start_gameplay(self):
-        MainGame(self)
-
-    def set_up_environment(self):
+    def set_up(self):
         globalClock.setMode(ClockObject.MLimited)
         globalClock.setFrameRate(120)
         self.render.setAntialias(AntialiasAttrib.MAuto)
         self.disableMouse()
+        MainGame(self)
