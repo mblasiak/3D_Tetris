@@ -14,6 +14,14 @@ class ShapesFactory:
         self.model_switcher = ModelSwitcher()
         self.box_factory = box_factory
 
+    def get_random_type(self):
+        return randrange(1, 8, 1)
+
+    def get_shape_from_numb(self,numb):
+        shape = self.shape_switcher.number_to_shape(numb)
+        model = self.model_switcher.number_to_model(numb)
+        return shape(self.map_controller, self.center_x, self.center_y, model(), self.box_factory)
+
     def get_random(self):
         rand = randrange(1, 8, 1)
         shape = self.shape_switcher.number_to_shape(rand)

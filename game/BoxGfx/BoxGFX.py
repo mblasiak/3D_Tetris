@@ -4,14 +4,14 @@ from game.BoxModels.BoxModels import *
 
 class BoxGFX:
 
-    def __init__(self, x, y, app, model_type, model_factory, box_size, gfx_offsets, game_speed):
+    def __init__(self, x, y, render, model_type, model_factory, box_size, gfx_offsets, game_speed):
         (x_offset, y_offset, z_offset) = gfx_offsets
         self.gfx_x = x * box_size + x_offset
         self.gfx_y = y * box_size + y_offset
         self.gfx_z = z_offset
         self.box_size = box_size
         self.game_speed = game_speed
-        self.box_holder = app.render.attachNewNode("Box Holder")
+        self.box_holder = render.attachNewNode("Box Holder")
         model_factory.get_model(model_type).instanceTo(self.box_holder)
         self.box_holder.setPos(self.gfx_x, self.gfx_z, self.gfx_y)
         self.move_down_itv = self.box_holder.posInterval(self.game_speed,
