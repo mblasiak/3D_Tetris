@@ -17,4 +17,3 @@ class Game(ShowBase):
         globalClock.setFrameRate(120)
         self.render.setAntialias(AntialiasAttrib.MAuto)
         self.disableMouse()
-        # self.render.analyze()

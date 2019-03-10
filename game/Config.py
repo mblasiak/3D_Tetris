@@ -5,11 +5,11 @@ class Config:
         move_time = 5
 
     class NextBlockRegion:
-        cords = (0, 1, 0.8, 1)
+        cords = (0, 0.3, 0, 1)
         sort = 20
 
     class GamePlay:
-        game_speed = 0.6
+        game_speed = 0.01
 
         hold_time = 100
 

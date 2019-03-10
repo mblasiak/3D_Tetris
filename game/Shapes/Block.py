@@ -4,12 +4,12 @@ from game.BoxGfx.NullGfxBox import NullGfxBox
 
 class Block:
 
-    def __init__(self, boxes_list, initial_state, center_x, center_y, mapi):
+    def __init__(self, boxes_list, initial_state, center_x, center_y, map):
         self.center_y = center_y
         self.center_x = center_x
         self.state = initial_state
         self.boxes = boxes_list
-        self.map=mapi
+        self.map=map
         #self.look_at=NullGfxBox(center_x, center_y,box_size, app ,game_speed)
 
     def fall(self):
