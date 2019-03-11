@@ -5,6 +5,7 @@ from game.BoxModels.BoxModelFactory import BoxModelFactory
 from game.Config import Config
 from game.GameCore.GamePlayController import GamePlayController
 from game.GameMap.GameMap import GameMap
+from game.Menu import Menu
 from game.Score.Score import Score
 from game.ScoreDisplayer.ScoreDisplay import ScoreDisplay
 from game.Shapes.ShapesFactory import ShapesFactory
@@ -36,15 +37,18 @@ class MainGame:
         self.next_block_disp.setCamera(cam)
         self.gpc.add_next_box_type_observer(self.next_block_disp)
         cam.setPos(10, 80, 20)
+        self.menus = Menu(self)
         self.start()
         self.current_game_state = 0
 
+
     def start(self):
         self.app.taskMgr.add(self.game_loop, "game_loop")
+        self.menus.start()
 
     def game_loop(self, task):
         # TODO use type object here
-        # if self.current_game_state==0:
+        # if self.current_game_state == 0:
         #     self.start_tetris()
         if self.current_game_state == 1:
             if self.gpc.play() == 0:
@@ -52,12 +56,14 @@ class MainGame:
                 return task.done
         return task.cont
 
+
     def clear_tetris(self):
         self.next_block_disp.clear()
         self.gpc.clear()
         self.score_display.clear()
 
     def start_tetris(self):
+        self.menus.clear()
         self.score.start()
 
         self.score_display.start()

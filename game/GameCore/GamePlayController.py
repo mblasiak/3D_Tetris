@@ -33,6 +33,7 @@ class GamePlayController(CurrentBoxNotifier, NextBoxNotifier, StartClear):
 
     def clear(self):
         self.button_handler.stop()
+        self.bounds.clear()
         self.mc.clear()
 
     def drop_new(self):
