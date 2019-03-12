@@ -3,8 +3,10 @@ from panda3d.core import Camera, PerspectiveLens, NodePath, Lens
 from game.BoxGfx.BoxGfxFactory import BoxGfxFactory
 from game.BoxModels.BoxModelFactory import BoxModelFactory
 from game.Config import Config
+from game.DB.DBConnector import DBConnector
 from game.GameCore.GamePlayController import GamePlayController
 from game.GameMap.GameMap import GameMap
+from game.GameOverScreen import GameOver
 from game.Menu import Menu
 from game.Score.Score import Score
 from game.ScoreDisplayer.ScoreDisplay import ScoreDisplay
@@ -38,9 +40,10 @@ class MainGame:
         self.gpc.add_next_box_type_observer(self.next_block_disp)
         cam.setPos(10, 80, 20)
         self.menus = Menu(self)
+        self.game_over=GameOver()
         self.start()
         self.current_game_state = 0
-
+        self.db_connector=DBConnector()
 
     def start(self):
         self.app.taskMgr.add(self.game_loop, "game_loop")
@@ -48,11 +51,10 @@ class MainGame:
 
     def game_loop(self, task):
         # TODO use type object here
-        # if self.current_game_state == 0:
-        #     self.start_tetris()
         if self.current_game_state == 1:
             if self.gpc.play() == 0:
                 self.clear_tetris()
+                self.game_over.start()
                 return task.done
         return task.cont
 
